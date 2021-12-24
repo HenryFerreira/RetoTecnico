@@ -1,6 +1,7 @@
 package GUI;
 
 import Logica.Entidades.Pregunta;
+import Logica.Entidades.Respuesta;
 import Logica.Fabrica;
 import java.util.List;
 
@@ -32,12 +33,14 @@ public class GUI_ZonaDeJuego extends javax.swing.JFrame {
     public GUI_ZonaDeJuego() {
         initComponents();
 
+        List<Respuesta> respuestas = fabrica.getServicioRespuestas().getTodasLasPreguntasArte(preguntasGeografia.get(0).getId());
+
         this.lbl_nombre_categoria.setText(preguntasGeografia.get(0).getIdCategoria().toString());
         this.lbl_pregunta.setText(preguntasGeografia.get(0).getPregunta());
-        this.rbtn_respuesta1.setText(preguntasGeografia.get(0).getIncorrecta1());
-        this.rbtn_respuesta2.setText(preguntasGeografia.get(0).getIncorrecta2());
-        this.rbtn_respuesta3.setText(preguntasGeografia.get(0).getIncorrecta3());
-        this.rbtn_respuesta4.setText(preguntasGeografia.get(0).getCorrecta());
+        this.rbtn_respuesta1.setText(respuestas.get(0).getRespusta());
+        this.rbtn_respuesta2.setText(respuestas.get(1).getRespusta());
+        this.rbtn_respuesta3.setText(respuestas.get(2).getRespusta());
+        this.rbtn_respuesta4.setText(respuestas.get(3).getRespusta());
     }
 
     @SuppressWarnings("unchecked")
@@ -244,12 +247,15 @@ public class GUI_ZonaDeJuego extends javax.swing.JFrame {
     // End of variables declaration//GEN-END:variables
 
     public void pasarPregunta(List<Pregunta> preguntas, Integer i) {
+        
+        List<Respuesta> respuestas = fabrica.getServicioRespuestas().getTodasLasPreguntasArte(preguntas.get(i).getId());
+        
         this.lbl_nombre_categoria.setText(preguntas.get(i).getIdCategoria().toString());
         this.lbl_pregunta.setText(preguntas.get(i).getPregunta());
-        this.rbtn_respuesta1.setText(preguntas.get(i).getIncorrecta1());
-        this.rbtn_respuesta2.setText(preguntas.get(i).getIncorrecta2());
-        this.rbtn_respuesta3.setText(preguntas.get(i).getIncorrecta3());
-        this.rbtn_respuesta4.setText(preguntas.get(i).getCorrecta());
+        this.rbtn_respuesta1.setText(respuestas.get(0).getRespusta());
+        this.rbtn_respuesta2.setText(respuestas.get(1).getRespusta());
+        this.rbtn_respuesta3.setText(respuestas.get(2).getRespusta());
+        this.rbtn_respuesta4.setText(respuestas.get(3).getRespusta());
 
     }
 

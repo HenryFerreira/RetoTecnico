@@ -153,10 +153,7 @@ public class ImpServicio_Preguntas implements Servicio_Preguntas {
                     rs.getInt("id"),
                     rs.getInt("idCategoria"),
                     rs.getString("pregunta"),
-                    rs.getString("incorrecta1"),
-                    rs.getString("incorrecta2"),
-                    rs.getString("incorrecta3"),
-                    rs.getString("correcta")
+                    rs.getString("respuesta")
             );
         } catch (SQLException ex) {
             throw new SQLException(ex.getMessage(), ex.getCause());

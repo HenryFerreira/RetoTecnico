@@ -2,15 +2,19 @@ package Logica;
 
 import Logica.Controladores.Implementacion.ImpControlador_Categorias;
 import Logica.Controladores.Implementacion.ImpControlador_Preguntas;
+import Logica.Controladores.Implementacion.ImpControlador_Respuestas;
 import Logica.Controladores.Implementacion.ImpControlador_Usuarios;
 import Logica.Controladores.Interfaces.Controlador_Categorias;
 import Logica.Controladores.Interfaces.Controlador_Preguntas;
+import Logica.Controladores.Interfaces.Controlador_Respuestas;
 import Logica.Controladores.Interfaces.Controlador_Usuarios;
 import Logica.Servicios.Implementacion.ImpServicio_Categorias;
 import Logica.Servicios.Implementacion.ImpServicio_Preguntas;
+import Logica.Servicios.Implementacion.ImpServicio_Respuestas;
 import Logica.Servicios.Implementacion.ImpServicio_Usuarios;
 import Logica.Servicios.Interfaces.Servicio_Categorias;
 import Logica.Servicios.Interfaces.Servicio_Preguntas;
+import Logica.Servicios.Interfaces.Servicio_Respuestas;
 import Logica.Servicios.Interfaces.Servicio_Usuarios;
 
 /**
@@ -49,6 +53,12 @@ public class Fabrica {
         Controlador_Preguntas cont = new ImpControlador_Preguntas();
         return cont;
     }
+
+    //Obtener instancia del CONTROLADOR DE RESPUESTAS
+    public Controlador_Respuestas getControladorRespuestas() {
+        Controlador_Respuestas cont = new ImpControlador_Respuestas();
+        return cont;
+    }
     //========================================================================//
 
     //========================================================================//    
@@ -67,6 +77,12 @@ public class Fabrica {
     //Obtener instancia del PREGUNTAS DE PREGUNTAS
     public Servicio_Preguntas getServicioPreguntas() {
         Servicio_Preguntas cont = new ImpServicio_Preguntas();
+        return cont;
+    }
+
+    //Obtener instancia del PREGUNTAS DE RESPUESTAS
+    public Servicio_Respuestas getServicioRespuestas() {
+        Servicio_Respuestas cont = new ImpServicio_Respuestas();
         return cont;
     }
     //========================================================================//    
