@@ -7,8 +7,8 @@ package Logica.Entidades;
 public class Pregunta {
 
     //============================= ATRIBUTOS ================================//
-    private int id;
-    private int idCategoria;
+    private Integer id;
+    private Integer idCategoria;
     private String pregunta;
     private String incorrecta1;
     private String incorrecta2;
@@ -20,7 +20,7 @@ public class Pregunta {
     public Pregunta() {
     }
 
-    public Pregunta(int id, int idCategoria, String pregunta, String incorrecta1, String incorrecta2, String incorrecta3, String correcta) {
+    public Pregunta(Integer id, Integer idCategoria, String pregunta, String incorrecta1, String incorrecta2, String incorrecta3, String correcta) {
         this.id = id;
         this.idCategoria = idCategoria;
         this.pregunta = pregunta;
@@ -32,19 +32,19 @@ public class Pregunta {
     //=========================== CONSTRUCTORES ==============================//
 
     //========================= GETTERS & SETTERS ============================//
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
-    public int getIdCategoria() {
+    public Integer getIdCategoria() {
         return idCategoria;
     }
 
-    public void setIdCategoria(int idCategoria) {
+    public void setIdCategoria(Integer idCategoria) {
         this.idCategoria = idCategoria;
     }
 

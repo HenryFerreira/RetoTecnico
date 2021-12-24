@@ -1,7 +1,18 @@
 package Logica.Servicios.Implementacion;
 
+import Logica.Entidades.Pregunta;
+import Logica.Entidades.Usuario;
 import Logica.Servicios.Interfaces.Servicio_Preguntas;
 import Persistencia.ConexionBD;
+import Persistencia.Consultas.Consultas_Preguntas;
+import Persistencia.Consultas.Consultas_Usuarios;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -13,6 +24,8 @@ public class ImpServicio_Preguntas implements Servicio_Preguntas {
     private static ImpServicio_Preguntas instance;
     //Conexion a la base de datos
     private final ConexionBD conexion = new ConexionBD();
+    //Consultas relacionadas con el USUARIO
+    private final Consultas_Preguntas consultasPreguntas = new Consultas_Preguntas();
 
     //Obtener instancia de la IMPSERVICIO_PREGUNTAS
     public ImpServicio_Preguntas getInstance() {
@@ -26,4 +39,40 @@ public class ImpServicio_Preguntas implements Servicio_Preguntas {
     //Contructor por defecto
     public ImpServicio_Preguntas() {
     }
+
+    //========================= OBTENER TODOS LAS PREGUNTAS ==================//
+    @Override
+    public List<Pregunta> getTodasLasPreguntas() {
+        List<Pregunta> usuarios = new ArrayList<>();//Lista de preguntas
+        try {
+            //Se realiza la consulta a la base de datos mediante la CONEXION antes creada
+            PreparedStatement sentencia = conexion.getConexion().prepareStatement(consultasPreguntas.todosLasPreguntas);
+            ResultSet rs = sentencia.executeQuery();//Se obtiene la consulta
+            while (rs.next()) {//Se recorre la consulta ontenida
+                usuarios.add(preguntaMapper(rs));//Se generan los usuarios
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(ImpServicio_Usuarios.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return usuarios;
+    }
+    //========================= OBTENER TODOS LAS PREGUNTAS ==================//
+
+    //============================= MAPPER PREGUNTA ==========================//
+    private Pregunta preguntaMapper(ResultSet rs) throws SQLException {
+        try {//Con lo que se obtuvo de la consulta se genera un objeto USUARIO
+            return new Pregunta(
+                    rs.getInt("id"),
+                    rs.getInt("idCategoria"),
+                    rs.getString("pregunta"),
+                    rs.getString("incorrecta1"),
+                    rs.getString("incorrecta2"),
+                    rs.getString("incorrecta3"),
+                    rs.getString("correcta")
+            );
+        } catch (SQLException ex) {
+            throw new SQLException(ex.getMessage(), ex.getCause());
+        }
+    }
+    //============================= MAPPER PREGUNTA ==========================//
 }

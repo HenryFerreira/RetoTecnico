@@ -1,13 +1,34 @@
 package GUI;
 
+import Logica.Entidades.Pregunta;
+import Logica.Fabrica;
+import java.util.List;
+
 /**
  *
  * @author Haff
  */
 public class GUI_ZonaDeJuego extends javax.swing.JFrame {
 
+    Fabrica fabrica = new Fabrica();
+
     public GUI_ZonaDeJuego() {
         initComponents();
+
+        //Se genera una lista con los usuarios obtenidos de la BD
+        List<Pregunta> preguntas = fabrica.getControladorPreguntas().getTodasLasPreguntas();
+
+        for (Pregunta pregunta : preguntas) {
+            this.lbl_nombre_categoria.setText(pregunta.getIdCategoria().toString());
+            this.lbl_pregunta.setText(pregunta.getPregunta());
+            this.rbtn_respuesta1.setText(pregunta.getIncorrecta1());
+            this.rbtn_respuesta2.setText(pregunta.getIncorrecta2());
+            this.rbtn_respuesta3.setText(pregunta.getIncorrecta3());
+            this.rbtn_respuesta4.setText(pregunta.getCorrecta());
+            
+        }
+        
+
     }
 
     @SuppressWarnings("unchecked")
