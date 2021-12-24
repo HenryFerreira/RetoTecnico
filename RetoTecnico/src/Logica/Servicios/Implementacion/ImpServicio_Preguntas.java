@@ -1,11 +1,9 @@
 package Logica.Servicios.Implementacion;
 
 import Logica.Entidades.Pregunta;
-import Logica.Entidades.Usuario;
 import Logica.Servicios.Interfaces.Servicio_Preguntas;
 import Persistencia.ConexionBD;
 import Persistencia.Consultas.Consultas_Preguntas;
-import Persistencia.Consultas.Consultas_Usuarios;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -43,21 +41,111 @@ public class ImpServicio_Preguntas implements Servicio_Preguntas {
     //========================= OBTENER TODOS LAS PREGUNTAS ==================//
     @Override
     public List<Pregunta> getTodasLasPreguntas() {
-        List<Pregunta> usuarios = new ArrayList<>();//Lista de preguntas
+        List<Pregunta> preguntas = new ArrayList<>();//Lista de preguntas
         try {
             //Se realiza la consulta a la base de datos mediante la CONEXION antes creada
             PreparedStatement sentencia = conexion.getConexion().prepareStatement(consultasPreguntas.todosLasPreguntas);
             ResultSet rs = sentencia.executeQuery();//Se obtiene la consulta
             while (rs.next()) {//Se recorre la consulta ontenida
-                usuarios.add(preguntaMapper(rs));//Se generan los usuarios
+                preguntas.add(preguntaMapper(rs));//Se generan los usuarios
             }
         } catch (SQLException ex) {
             Logger.getLogger(ImpServicio_Usuarios.class.getName()).log(Level.SEVERE, null, ex);
         }
-        return usuarios;
+        return preguntas;
     }
     //========================= OBTENER TODOS LAS PREGUNTAS ==================//
 
+    //============== OBTENER TODOS LAS PREGUNTAS DE GEOGRAFÍA ================//
+    @Override
+    public List<Pregunta> getTodasLasPreguntasGeografia() {
+        List<Pregunta> preguntas = new ArrayList<>();//Lista de preguntas
+        try {
+            //Se realiza la consulta a la base de datos mediante la CONEXION antes creada
+            PreparedStatement sentencia = conexion.getConexion().prepareStatement(consultasPreguntas.randomGeografia);
+            ResultSet rs = sentencia.executeQuery();//Se obtiene la consulta
+            while (rs.next()) {//Se recorre la consulta ontenida
+                preguntas.add(preguntaMapper(rs));//Se generan los usuarios
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(ImpServicio_Usuarios.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return preguntas;
+    }
+    //============== OBTENER TODOS LAS PREGUNTAS DE GEOGRAFÍA ================//
+
+    //=============== OBTENER TODOS LAS PREGUNTAS DE HISTORIA ================//
+    @Override
+    public List<Pregunta> getTodasLasPreguntasHistoria() {
+        List<Pregunta> preguntas = new ArrayList<>();//Lista de preguntas
+        try {
+            //Se realiza la consulta a la base de datos mediante la CONEXION antes creada
+            PreparedStatement sentencia = conexion.getConexion().prepareStatement(consultasPreguntas.randomHistoria);
+            ResultSet rs = sentencia.executeQuery();//Se obtiene la consulta
+            while (rs.next()) {//Se recorre la consulta ontenida
+                preguntas.add(preguntaMapper(rs));//Se generan los usuarios
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(ImpServicio_Usuarios.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return preguntas;
+    }
+    //=============== OBTENER TODOS LAS PREGUNTAS DE HISTORIA ================//
+    
+    //=============== OBTENER TODOS LAS PREGUNTAS DE CIENCIA =================//
+    @Override
+    public List<Pregunta> getTodasLasPreguntasCiencia() {
+        List<Pregunta> preguntas = new ArrayList<>();//Lista de preguntas
+        try {
+            //Se realiza la consulta a la base de datos mediante la CONEXION antes creada
+            PreparedStatement sentencia = conexion.getConexion().prepareStatement(consultasPreguntas.randomCiencia);
+            ResultSet rs = sentencia.executeQuery();//Se obtiene la consulta
+            while (rs.next()) {//Se recorre la consulta ontenida
+                preguntas.add(preguntaMapper(rs));//Se generan los usuarios
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(ImpServicio_Usuarios.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return preguntas;
+    }
+    //=============== OBTENER TODOS LAS PREGUNTAS DE CIENCIA =================//
+    
+    //=============== OBTENER TODOS LAS PREGUNTAS DE DEPORTE =================//
+    @Override
+    public List<Pregunta> getTodasLasPreguntasDeporte() {
+        List<Pregunta> preguntas = new ArrayList<>();//Lista de preguntas
+        try {
+            //Se realiza la consulta a la base de datos mediante la CONEXION antes creada
+            PreparedStatement sentencia = conexion.getConexion().prepareStatement(consultasPreguntas.randomDeporte);
+            ResultSet rs = sentencia.executeQuery();//Se obtiene la consulta
+            while (rs.next()) {//Se recorre la consulta ontenida
+                preguntas.add(preguntaMapper(rs));//Se generan los usuarios
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(ImpServicio_Usuarios.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return preguntas;
+    }
+    //=============== OBTENER TODOS LAS PREGUNTAS DE DEPORTE =================//
+   
+    //================= OBTENER TODOS LAS PREGUNTAS DE ARTE ==================//
+    @Override
+    public List<Pregunta> getTodasLasPreguntasArte() {
+        List<Pregunta> preguntas = new ArrayList<>();//Lista de preguntas
+        try {
+            //Se realiza la consulta a la base de datos mediante la CONEXION antes creada
+            PreparedStatement sentencia = conexion.getConexion().prepareStatement(consultasPreguntas.randomArte);
+            ResultSet rs = sentencia.executeQuery();//Se obtiene la consulta
+            while (rs.next()) {//Se recorre la consulta ontenida
+                preguntas.add(preguntaMapper(rs));//Se generan los usuarios
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(ImpServicio_Usuarios.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return preguntas;
+    }
+    //================= OBTENER TODOS LAS PREGUNTAS DE ARTE ==================//
+   
     //============================= MAPPER PREGUNTA ==========================//
     private Pregunta preguntaMapper(ResultSet rs) throws SQLException {
         try {//Con lo que se obtuvo de la consulta se genera un objeto USUARIO
@@ -75,4 +163,5 @@ public class ImpServicio_Preguntas implements Servicio_Preguntas {
         }
     }
     //============================= MAPPER PREGUNTA ==========================//
+
 }

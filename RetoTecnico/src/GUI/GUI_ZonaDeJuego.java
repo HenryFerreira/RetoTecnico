@@ -11,24 +11,33 @@ import java.util.List;
 public class GUI_ZonaDeJuego extends javax.swing.JFrame {
 
     Fabrica fabrica = new Fabrica();
+    //Se genera una lista con los usuarios obtenidos de la BD
+    List<Pregunta> preguntasGeografia = fabrica.getControladorPreguntas().getTodasLasPreguntasGeografia();
+
+    //Se genera una lista con los usuarios obtenidos de la BD
+    List<Pregunta> preguntasHistoria = fabrica.getControladorPreguntas().getTodasLasPreguntasHistoria();
+
+    //Se genera una lista con los usuarios obtenidos de la BD
+    List<Pregunta> preguntasCiencia = fabrica.getControladorPreguntas().getTodasLasPreguntasCiencia();
+
+    //Se genera una lista con los usuarios obtenidos de la BD
+    List<Pregunta> preguntasDeporte = fabrica.getControladorPreguntas().getTodasLasPreguntasDeporte();
+
+    //Se genera una lista con los usuarios obtenidos de la BD
+    List<Pregunta> preguntasArte = fabrica.getControladorPreguntas().getTodasLasPreguntasArte();
+
+    Integer cont = 0;
+    Integer ronda = 1;
 
     public GUI_ZonaDeJuego() {
         initComponents();
 
-        //Se genera una lista con los usuarios obtenidos de la BD
-        List<Pregunta> preguntas = fabrica.getControladorPreguntas().getTodasLasPreguntas();
-
-        for (Pregunta pregunta : preguntas) {
-            this.lbl_nombre_categoria.setText(pregunta.getIdCategoria().toString());
-            this.lbl_pregunta.setText(pregunta.getPregunta());
-            this.rbtn_respuesta1.setText(pregunta.getIncorrecta1());
-            this.rbtn_respuesta2.setText(pregunta.getIncorrecta2());
-            this.rbtn_respuesta3.setText(pregunta.getIncorrecta3());
-            this.rbtn_respuesta4.setText(pregunta.getCorrecta());
-            
-        }
-        
-
+        this.lbl_nombre_categoria.setText(preguntasGeografia.get(0).getIdCategoria().toString());
+        this.lbl_pregunta.setText(preguntasGeografia.get(0).getPregunta());
+        this.rbtn_respuesta1.setText(preguntasGeografia.get(0).getIncorrecta1());
+        this.rbtn_respuesta2.setText(preguntasGeografia.get(0).getIncorrecta2());
+        this.rbtn_respuesta3.setText(preguntasGeografia.get(0).getIncorrecta3());
+        this.rbtn_respuesta4.setText(preguntasGeografia.get(0).getCorrecta());
     }
 
     @SuppressWarnings("unchecked")
@@ -103,6 +112,16 @@ public class GUI_ZonaDeJuego extends javax.swing.JFrame {
         Salir.setText("Salir");
 
         btn_continuar.setText("Continuar");
+        btn_continuar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btn_continuarMouseClicked(evt);
+            }
+        });
+        btn_continuar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_continuarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -156,6 +175,34 @@ public class GUI_ZonaDeJuego extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void btn_continuarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_continuarActionPerformed
+        cont += 1;
+        //Si es mayor o igual a 4 que son las preguntas por ronda
+        if (cont > 4) {
+            cont = 0;//Vuelve el contador a cero
+            ronda++;
+        }
+
+        if (ronda == 2 && cont == 0 || ronda == 2) {
+            pasarPregunta(preguntasHistoria, cont);
+        } else if (ronda == 3 && cont == 0 || ronda == 3) {
+            pasarPregunta(preguntasCiencia, cont);
+        } else if (ronda == 4 && cont == 0 || ronda == 4) {
+            pasarPregunta(preguntasDeporte, cont);
+        } else if (ronda == 5 && cont == 0 || ronda == 5) {
+            pasarPregunta(preguntasArte, cont);
+        } else {
+            pasarPregunta(preguntasGeografia, cont);
+        }
+
+
+    }//GEN-LAST:event_btn_continuarActionPerformed
+
+    private void btn_continuarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_continuarMouseClicked
+
+
+    }//GEN-LAST:event_btn_continuarMouseClicked
+
     public static void main(String args[]) {
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
@@ -195,4 +242,15 @@ public class GUI_ZonaDeJuego extends javax.swing.JFrame {
     private javax.swing.JRadioButton rbtn_respuesta3;
     private javax.swing.JRadioButton rbtn_respuesta4;
     // End of variables declaration//GEN-END:variables
+
+    public void pasarPregunta(List<Pregunta> preguntas, Integer i) {
+        this.lbl_nombre_categoria.setText(preguntas.get(i).getIdCategoria().toString());
+        this.lbl_pregunta.setText(preguntas.get(i).getPregunta());
+        this.rbtn_respuesta1.setText(preguntas.get(i).getIncorrecta1());
+        this.rbtn_respuesta2.setText(preguntas.get(i).getIncorrecta2());
+        this.rbtn_respuesta3.setText(preguntas.get(i).getIncorrecta3());
+        this.rbtn_respuesta4.setText(preguntas.get(i).getCorrecta());
+
+    }
+
 }
