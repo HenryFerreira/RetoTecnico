@@ -6,6 +6,7 @@ package Logica.Entidades;
  */
 public class Pregunta {
 
+    //============================= ATRIBUTOS ================================//
     private int id;
     private int idCategoria;
     private String pregunta;
@@ -13,7 +14,9 @@ public class Pregunta {
     private String incorrecta2;
     private String incorrecta3;
     private String correcta;
+    //============================= ATRIBUTOS ================================//
 
+    //=========================== CONSTRUCTORES ==============================//
     public Pregunta() {
     }
 
@@ -26,7 +29,9 @@ public class Pregunta {
         this.incorrecta3 = incorrecta3;
         this.correcta = correcta;
     }
+    //=========================== CONSTRUCTORES ==============================//
 
+    //========================= GETTERS & SETTERS ============================//
     public int getId() {
         return id;
     }
@@ -82,5 +87,6 @@ public class Pregunta {
     public void setCorrecta(String correcta) {
         this.correcta = correcta;
     }
+    //========================= GETTERS & SETTERS ============================//
 
 }

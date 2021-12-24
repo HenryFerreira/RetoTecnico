@@ -19,13 +19,15 @@ import Logica.Servicios.Interfaces.Servicio_Usuarios;
  */
 public class Fabrica {
 
+    //Variable estatica implementada como instancia de la FABRICA
     private static Fabrica instance;
 
     //Obtener instancia de la FABRICA
     public static Fabrica getInstance() {
-        if (instance == null) {
+        //Si la INSTANCIA es NULA
+        if (instance == null) {//Se genera una nueva
             instance = new Fabrica();
-        }
+        }//Y se retorna
         return instance;
     }
 

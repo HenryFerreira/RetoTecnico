@@ -6,24 +6,29 @@ package Logica.Entidades;
  */
 public class Usuario {
 
-    private int id;
+    //============================= ATRIBUTOS ================================//
+    private Integer id;
     private String nombre;
-    private int puntos;
+    private Integer puntos;
+    //============================= ATRIBUTOS ================================//
 
+    //=========================== CONSTRUCTORES ==============================//
     public Usuario() {
     }
 
-    public Usuario(int id, String nombre, int puntos) {
+    public Usuario(Integer id, String nombre, Integer puntos) {
         this.id = id;
         this.nombre = nombre;
         this.puntos = puntos;
     }
+    //=========================== CONSTRUCTORES ==============================//
 
-    public int getId() {
+    //========================= GETTERS & SETTERS ============================//
+    public Integer getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
@@ -35,12 +40,13 @@ public class Usuario {
         this.nombre = nombre;
     }
 
-    public int getPuntos() {
+    public Integer getPuntos() {
         return puntos;
     }
 
-    public void setPuntos(int puntos) {
+    public void setPuntos(Integer puntos) {
         this.puntos = puntos;
     }
+    //========================= GETTERS & SETTERS ============================//
 
 }

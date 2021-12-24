@@ -1,13 +1,42 @@
 package GUI;
 
+import Logica.Entidades.Usuario;
+import Logica.Fabrica;
+import java.util.List;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author Haff
  */
 public class GUI_Inicio extends javax.swing.JFrame {
 
+    Fabrica fabrica = new Fabrica();
+
     public GUI_Inicio() {
         initComponents();
+
+        //Crear el modelo de la tabla
+        DefaultTableModel tabla = new DefaultTableModel();
+        //Defino las columnas que quiero
+        tabla.addColumn("ID");
+        tabla.addColumn("Nombre");
+        tabla.addColumn("Puntos");
+
+        //Se genera una lista con los usuarios obtenidos de la BD
+        List<Usuario> usuarios = fabrica.getControladorUsuarios().getTodosLosUsuarios();
+        
+        for (Usuario usuario : usuarios) {
+            String fila[] = new String[3];//Cantidad de columnas por fila
+
+            fila[0] = usuario.getId().toString();
+            fila[1] = usuario.getNombre();
+            fila[2] = usuario.getPuntos().toString();
+            tabla.addRow(fila);//Se agrega la fila al modelo de la tabla
+        }
+        //Se setea el modelo a la tabla del GUI
+        this.tabla_jugadores.setModel(tabla);
+
     }
 
     @SuppressWarnings("unchecked")

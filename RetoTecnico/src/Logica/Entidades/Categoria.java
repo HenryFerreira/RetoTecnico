@@ -6,10 +6,13 @@ package Logica.Entidades;
  */
 public class Categoria {
 
+    //============================= ATRIBUTOS ================================//
     private int id;
     private String nombre;
     private int dificultad;
+    //============================= ATRIBUTOS ================================//
 
+    //=========================== CONSTRUCTORES ==============================//
     public Categoria() {
     }
 
@@ -18,7 +21,9 @@ public class Categoria {
         this.nombre = nombre;
         this.dificultad = puntos;
     }
+    //=========================== CONSTRUCTORES ==============================//
 
+    //========================= GETTERS & SETTERS ============================//
     public int getId() {
         return id;
     }
@@ -42,5 +47,6 @@ public class Categoria {
     public void setPuntos(int puntos) {
         this.dificultad = puntos;
     }
+    //========================= GETTERS & SETTERS ============================//
 
 }
