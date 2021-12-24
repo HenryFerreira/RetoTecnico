@@ -1,8 +1,11 @@
 package GUI;
 
+import static Logica.Constantes.JUGADOR;
 import Logica.Entidades.Usuario;
 import Logica.Fabrica;
+import java.sql.SQLException;
 import java.util.List;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -25,18 +28,17 @@ public class GUI_Inicio extends javax.swing.JFrame {
 
         //Se genera una lista con los usuarios obtenidos de la BD
         List<Usuario> usuarios = fabrica.getControladorUsuarios().getTodosLosUsuarios();
-        
+
         for (Usuario usuario : usuarios) {
             String fila[] = new String[3];//Cantidad de columnas por fila
 
             fila[0] = usuario.getId().toString();
-            fila[1] = usuario.getNombre();
+            fila[1] = usuario.getNickname();
             fila[2] = usuario.getPuntos().toString();
             tabla.addRow(fila);//Se agrega la fila al modelo de la tabla
         }
         //Se setea el modelo a la tabla del GUI
         this.tabla_jugadores.setModel(tabla);
-
     }
 
     @SuppressWarnings("unchecked")
@@ -96,6 +98,11 @@ public class GUI_Inicio extends javax.swing.JFrame {
         btn_salir.setText("Salir");
 
         btn_aceptar.setText("Aceptar");
+        btn_aceptar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_aceptarActionPerformed(evt);
+            }
+        });
 
         jLabel1.setText("Puntuación de jugadores:");
 
@@ -146,6 +153,29 @@ public class GUI_Inicio extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btn_aceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_aceptarActionPerformed
+        // TODO add your handling code here:
+        String nombre = this.txt_nombre_usuario.getText();
+        Integer puntos = 0;
+        Usuario jugador = new Usuario(nombre, puntos);
+
+        try {
+            fabrica.getControladorUsuarios().altaUsuario(jugador);
+
+            JUGADOR.setId(fabrica.getControladorUsuarios().getUsuarioPorNickname(nombre).getId());
+            JUGADOR.setNickname(nombre);
+            JUGADOR.setPuntos(puntos);
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(rootPane, e.getMessage());
+        }
+
+        GUI_ZonaDeJuego zonaDeJuego = new GUI_ZonaDeJuego();
+        this.hide();
+        zonaDeJuego.show();
+        
+
+    }//GEN-LAST:event_btn_aceptarActionPerformed
 
     public static void main(String args[]) {
         try {

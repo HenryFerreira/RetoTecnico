@@ -1,9 +1,11 @@
 package GUI;
 
+import static Logica.Constantes.JUGADOR;
 import Logica.Entidades.Pregunta;
 import Logica.Entidades.Respuesta;
 import Logica.Fabrica;
 import java.util.List;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -11,6 +13,8 @@ import java.util.List;
  */
 public class GUI_ZonaDeJuego extends javax.swing.JFrame {
 
+    
+    
     Fabrica fabrica = new Fabrica();
     //Se genera una lista con los usuarios obtenidos de la BD
     List<Pregunta> preguntasGeografia = fabrica.getControladorPreguntas().getTodasLasPreguntasGeografia();
@@ -29,6 +33,7 @@ public class GUI_ZonaDeJuego extends javax.swing.JFrame {
 
     Integer cont = 0;
     Integer ronda = 1;
+    Integer puntos = JUGADOR.getPuntos();
 
     public GUI_ZonaDeJuego() {
         initComponents();
@@ -41,6 +46,8 @@ public class GUI_ZonaDeJuego extends javax.swing.JFrame {
         this.rbtn_respuesta2.setText(respuestas.get(1).getRespusta());
         this.rbtn_respuesta3.setText(respuestas.get(2).getRespusta());
         this.rbtn_respuesta4.setText(respuestas.get(3).getRespusta());
+
+        this.lbl_cantidad_puntos.setText(puntos.toString());
     }
 
     @SuppressWarnings("unchecked")
@@ -183,19 +190,38 @@ public class GUI_ZonaDeJuego extends javax.swing.JFrame {
         //Si es mayor o igual a 4 que son las preguntas por ronda
         if (cont > 4) {
             cont = 0;//Vuelve el contador a cero
-            ronda++;
+            ronda++;//Avanza de ronda
         }
 
-        if (ronda == 2 && cont == 0 || ronda == 2) {
-            pasarPregunta(preguntasHistoria, cont);
-        } else if (ronda == 3 && cont == 0 || ronda == 3) {
-            pasarPregunta(preguntasCiencia, cont);
-        } else if (ronda == 4 && cont == 0 || ronda == 4) {
-            pasarPregunta(preguntasDeporte, cont);
-        } else if (ronda == 5 && cont == 0 || ronda == 5) {
-            pasarPregunta(preguntasArte, cont);
-        } else {
-            pasarPregunta(preguntasGeografia, cont);
+        int i = JOptionPane.showConfirmDialog(null, "¿Desea continuar?", "Siguiente pregunta", JOptionPane.YES_NO_OPTION);
+        if (i == JOptionPane.YES_OPTION) { //Si confirma
+            //En cada iteracion verifica en que ronda esta para eviar las preguntas correspondientes
+            if (ronda == 2) {
+                pasarPregunta(preguntasHistoria, cont);
+                puntos += 150;
+                fabrica.getControladorUsuarios().modificarPuntos(JUGADOR, puntos);
+            } else if (ronda == 3) {
+                pasarPregunta(preguntasCiencia, cont);
+                puntos += 200;
+                fabrica.getControladorUsuarios().modificarPuntos(JUGADOR, puntos);
+            } else if (ronda == 4) {
+                pasarPregunta(preguntasDeporte, cont);
+                puntos += 250;
+                fabrica.getControladorUsuarios().modificarPuntos(JUGADOR, puntos);
+            } else if (ronda == 5) {
+                pasarPregunta(preguntasArte, cont);
+                puntos += 300;
+                fabrica.getControladorUsuarios().modificarPuntos(JUGADOR, puntos);
+            } else {
+                pasarPregunta(preguntasGeografia, cont);
+                puntos += 100;
+                fabrica.getControladorUsuarios().modificarPuntos(JUGADOR, puntos);
+            }
+            
+            
+            
+        } else { //En caso de no confirmar
+
         }
 
 
@@ -247,9 +273,9 @@ public class GUI_ZonaDeJuego extends javax.swing.JFrame {
     // End of variables declaration//GEN-END:variables
 
     public void pasarPregunta(List<Pregunta> preguntas, Integer i) {
-        
+
         List<Respuesta> respuestas = fabrica.getServicioRespuestas().getTodasLasPreguntasArte(preguntas.get(i).getId());
-        
+
         this.lbl_nombre_categoria.setText(preguntas.get(i).getIdCategoria().toString());
         this.lbl_pregunta.setText(preguntas.get(i).getPregunta());
         this.rbtn_respuesta1.setText(respuestas.get(0).getRespusta());
@@ -257,6 +283,7 @@ public class GUI_ZonaDeJuego extends javax.swing.JFrame {
         this.rbtn_respuesta3.setText(respuestas.get(2).getRespusta());
         this.rbtn_respuesta4.setText(respuestas.get(3).getRespusta());
 
+        this.lbl_cantidad_puntos.setText(puntos.toString());
     }
 
 }

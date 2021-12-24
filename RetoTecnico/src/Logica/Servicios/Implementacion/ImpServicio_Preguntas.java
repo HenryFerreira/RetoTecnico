@@ -91,7 +91,7 @@ public class ImpServicio_Preguntas implements Servicio_Preguntas {
         return preguntas;
     }
     //=============== OBTENER TODOS LAS PREGUNTAS DE HISTORIA ================//
-    
+
     //=============== OBTENER TODOS LAS PREGUNTAS DE CIENCIA =================//
     @Override
     public List<Pregunta> getTodasLasPreguntasCiencia() {
@@ -109,7 +109,7 @@ public class ImpServicio_Preguntas implements Servicio_Preguntas {
         return preguntas;
     }
     //=============== OBTENER TODOS LAS PREGUNTAS DE CIENCIA =================//
-    
+
     //=============== OBTENER TODOS LAS PREGUNTAS DE DEPORTE =================//
     @Override
     public List<Pregunta> getTodasLasPreguntasDeporte() {
@@ -127,7 +127,7 @@ public class ImpServicio_Preguntas implements Servicio_Preguntas {
         return preguntas;
     }
     //=============== OBTENER TODOS LAS PREGUNTAS DE DEPORTE =================//
-   
+
     //================= OBTENER TODOS LAS PREGUNTAS DE ARTE ==================//
     @Override
     public List<Pregunta> getTodasLasPreguntasArte() {
@@ -145,7 +145,7 @@ public class ImpServicio_Preguntas implements Servicio_Preguntas {
         return preguntas;
     }
     //================= OBTENER TODOS LAS PREGUNTAS DE ARTE ==================//
-   
+
     //============================= MAPPER PREGUNTA ==========================//
     private Pregunta preguntaMapper(ResultSet rs) throws SQLException {
         try {//Con lo que se obtuvo de la consulta se genera un objeto USUARIO

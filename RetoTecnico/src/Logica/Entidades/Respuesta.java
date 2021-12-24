@@ -6,10 +6,13 @@ package Logica.Entidades;
  */
 public class Respuesta {
 
+    //============================= ATRIBUTOS ================================//
     Integer id;
     Integer idPregunta;
     String respusta;
+    //============================= ATRIBUTOS ================================//
 
+    //=========================== CONSTRUCTORES ==============================//
     public Respuesta() {
     }
 
@@ -18,7 +21,9 @@ public class Respuesta {
         this.idPregunta = idPregunta;
         this.respusta = respusta;
     }
+    //=========================== CONSTRUCTORES ==============================//
 
+    //========================= GETTERS & SETTERS ============================//
     public Integer getId() {
         return id;
     }
@@ -42,5 +47,6 @@ public class Respuesta {
     public void setRespusta(String respusta) {
         this.respusta = respusta;
     }
+    //========================= GETTERS & SETTERS ============================//
 
 }

@@ -8,7 +8,7 @@ public class Usuario {
 
     //============================= ATRIBUTOS ================================//
     private Integer id;
-    private String nombre;
+    private String nickname;
     private Integer puntos;
     //============================= ATRIBUTOS ================================//
 
@@ -16,13 +16,18 @@ public class Usuario {
     public Usuario() {
     }
 
-    public Usuario(Integer id, String nombre, Integer puntos) {
+    public Usuario(Integer id, String nickname, Integer puntos) {
         this.id = id;
-        this.nombre = nombre;
+        this.nickname = nickname;
+        this.puntos = puntos;
+    }
+
+    public Usuario(String nickname, Integer puntos) {
+        this.nickname = nickname;
         this.puntos = puntos;
     }
     //=========================== CONSTRUCTORES ==============================//
-
+    
     //========================= GETTERS & SETTERS ============================//
     public Integer getId() {
         return id;
@@ -32,12 +37,12 @@ public class Usuario {
         this.id = id;
     }
 
-    public String getNombre() {
-        return nombre;
+    public String getNickname() {
+        return nickname;
     }
 
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
+    public void setNickname(String nickname) {
+        this.nickname = nickname;
     }
 
     public Integer getPuntos() {

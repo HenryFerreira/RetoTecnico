@@ -25,10 +25,35 @@ public class ImpControlador_Usuarios implements Controlador_Usuarios {
     }
     //Obtener instancia del SERVICIO DE USUARIOS
     private final Servicio_Usuarios usuarioServicio = new ImpServicio_Usuarios().getInstance();
-
+    
     @Override//Obtener todos los USUARIOS de la BD
     public List<Usuario> getTodosLosUsuarios() {
         //Se llama al SERVICIO DE USUARIOS para obtener los usuarios
         return usuarioServicio.getTodosLosUsuarios();
+    }
+    
+    @Override//ALTA DE USUARIO
+    public void altaUsuario(Usuario usuario) {
+        //Verificar si se envio el parametro de nombre vasio
+        if (!usuario.getNickname().isEmpty()) {
+            usuarioServicio.altaUsuario(usuario);
+        }
+    }
+    
+    @Override    //MODIFICAR PUNTOS DEL USUARIO
+    public void modificarPuntos(Usuario usuario, Integer puntos) {
+        //Verificar si los parametros son nulos
+        if (usuario != null && puntos != null) {
+            usuarioServicio.modificarPuntos(usuario, puntos);
+        }
+    }
+
+    @Override//OBTENER USUARIO POR NICKNAME
+    public Usuario getUsuarioPorNickname(String nickname) {
+        //Verificar si los parametros son nulos
+        if (!nickname.isEmpty()) {
+           return usuarioServicio.getUsuarioPorNickname(nickname);
+        }
+        return null;
     }
 }
