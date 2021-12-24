@@ -156,21 +156,33 @@
           <Properties>
             <Property name="text" type="java.lang.String" value="Respuesta_1"/>
           </Properties>
+          <Events>
+            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="rbtn_respuesta1MouseClicked"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JRadioButton" name="rbtn_respuesta2">
           <Properties>
             <Property name="text" type="java.lang.String" value="Respuesta_2"/>
           </Properties>
+          <Events>
+            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="rbtn_respuesta2MouseClicked"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JRadioButton" name="rbtn_respuesta3">
           <Properties>
             <Property name="text" type="java.lang.String" value="Respuesta_3"/>
           </Properties>
+          <Events>
+            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="rbtn_respuesta3MouseClicked"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JRadioButton" name="rbtn_respuesta4">
           <Properties>
             <Property name="text" type="java.lang.String" value="Respuesta_4"/>
           </Properties>
+          <Events>
+            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="rbtn_respuesta4MouseClicked"/>
+          </Events>
         </Component>
       </SubComponents>
     </Container>

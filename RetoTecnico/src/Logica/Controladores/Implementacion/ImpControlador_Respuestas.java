@@ -4,6 +4,7 @@ import Logica.Controladores.Interfaces.Controlador_Respuestas;
 import Logica.Entidades.Respuesta;
 import Logica.Servicios.Implementacion.ImpServicio_Respuestas;
 import Logica.Servicios.Interfaces.Servicio_Respuestas;
+import java.sql.SQLException;
 import java.util.List;
 
 /**
@@ -29,6 +30,11 @@ public class ImpControlador_Respuestas implements Controlador_Respuestas {
     @Override//OBTENER TODOS LAS RESPUESTAS
     public List<Respuesta> getTodasLasPreguntasArte(Integer id) {
         return respuestasServicio.getTodasLasPreguntasArte(id);
+    }
+
+    @Override
+    public Boolean verificarRespuesta(String respuesta) throws SQLException {
+        return respuestasServicio.verificarRespuesta(respuesta);        
     }
     
 }

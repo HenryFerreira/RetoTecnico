@@ -56,6 +56,20 @@ public class ImpServicio_Respuestas implements Servicio_Respuestas {
     }
     //===================== OBTENER TODOS LAS RESPUESTAS =====================//
 
+    //===================== VERIFICAR RESPUESTA USUARIO ======================//
+    @Override
+    public Boolean verificarRespuesta(String respuesta) throws SQLException {
+        //Se realiza la consulta a la base de datos mediante la CONEXION antes creada
+        PreparedStatement sentencia = conexion.getConexion().prepareStatement(consultasRespustas.verificarRespuesta);
+        sentencia.setString(1, respuesta);
+        ResultSet rs = sentencia.executeQuery();
+        while (rs.next()) {
+            return true;
+        }
+        return false;
+    }
+    //===================== VERIFICAR RESPUESTA USUARIO ======================//
+
     //============================ MAPPER RESPUESTA ==========================//
     private Respuesta respuestaMapper(ResultSet rs) throws SQLException {
         try {//Con lo que se obtuvo de la consulta se genera un objeto USUARIO

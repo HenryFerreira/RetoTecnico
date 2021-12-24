@@ -1,6 +1,7 @@
 package Logica.Servicios.Interfaces;
 
 import Logica.Entidades.Respuesta;
+import java.sql.SQLException;
 import java.util.List;
 
 /**
@@ -10,4 +11,6 @@ import java.util.List;
 public interface Servicio_Respuestas {
     //OBTENER TODOS LAS RESPUESTAS
     public List<Respuesta> getTodasLasPreguntasArte(Integer id);
+    //VERIFICAR RESPUESTA USUARIO
+    public Boolean verificarRespuesta(String respuesta) throws SQLException;
 }
