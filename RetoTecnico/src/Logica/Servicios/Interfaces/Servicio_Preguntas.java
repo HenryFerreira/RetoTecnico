@@ -21,6 +21,8 @@ public interface Servicio_Preguntas {
     public List<Pregunta> getTodasLasPreguntasDeporte();
     //OBTENER TODOS LAS PREGUNTAS DE ARTE
     public List<Pregunta> getTodasLasPreguntasArte();
+    //OBTENER TODOS LAS PREGUNTAS POR ID CATEGORIA
+    public List<Pregunta> getPreguntasPorIdCategoria(Integer id);
     
     
 }

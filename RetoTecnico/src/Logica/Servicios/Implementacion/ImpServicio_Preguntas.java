@@ -145,6 +145,29 @@ public class ImpServicio_Preguntas implements Servicio_Preguntas {
         return preguntas;
     }
     //================= OBTENER TODOS LAS PREGUNTAS DE ARTE ==================//
+    
+    //============ OBTENER TODOS LAS PREGUNTAS POR ID CATEGORIA ==============//
+    @Override
+    public List<Pregunta> getPreguntasPorIdCategoria(Integer id) {
+        List<Pregunta> preguntas = new ArrayList<>();//Lista de preguntas
+        try {
+            //Se realiza la consulta a la base de datos mediante la CONEXION antes creada
+            PreparedStatement sentencia = conexion.getConexion().prepareStatement(consultasPreguntas.obtenerPreguntasPorIdCategoria);
+            //Se le pasan los datos que necesita la consulta
+            sentencia.setInt(1, id);
+            ResultSet rs = sentencia.executeQuery();//Se obtiene la consulta
+            
+            
+            //ResultSet rs = sentencia.executeQuery();//Se obtiene la consulta
+            while (rs.next()) {//Se recorre la consulta ontenida
+                preguntas.add(preguntaMapper(rs));//Se agregan los preguntas
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(ImpServicio_Usuarios.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return preguntas;
+    }
+    //============ OBTENER TODOS LAS PREGUNTAS POR ID CATEGORIA ==============//
 
     //============================= MAPPER PREGUNTA ==========================//
     private Pregunta preguntaMapper(ResultSet rs) throws SQLException {

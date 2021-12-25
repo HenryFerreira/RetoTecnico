@@ -4,7 +4,10 @@ import Logica.Controladores.Interfaces.Controlador_Usuarios;
 import Logica.Entidades.Usuario;
 import Logica.Servicios.Implementacion.ImpServicio_Usuarios;
 import Logica.Servicios.Interfaces.Servicio_Usuarios;
+import java.sql.SQLException;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -25,21 +28,25 @@ public class ImpControlador_Usuarios implements Controlador_Usuarios {
     }
     //Obtener instancia del SERVICIO DE USUARIOS
     private final Servicio_Usuarios usuarioServicio = new ImpServicio_Usuarios().getInstance();
-    
+
     @Override//Obtener todos los USUARIOS de la BD
     public List<Usuario> getTodosLosUsuarios() {
         //Se llama al SERVICIO DE USUARIOS para obtener los usuarios
         return usuarioServicio.getTodosLosUsuarios();
     }
-    
+
     @Override//ALTA DE USUARIO
     public void altaUsuario(Usuario usuario) {
         //Verificar si se envio el parametro de nombre vasio
         if (!usuario.getNickname().isEmpty()) {
-            usuarioServicio.altaUsuario(usuario);
+            try {
+                usuarioServicio.altaUsuario(usuario);
+            } catch (SQLException ex) {
+                Logger.getLogger(ImpControlador_Usuarios.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
     }
-    
+
     @Override    //MODIFICAR PUNTOS DEL USUARIO
     public void modificarPuntos(Usuario usuario, Integer puntos) {
         //Verificar si los parametros son nulos
@@ -52,7 +59,7 @@ public class ImpControlador_Usuarios implements Controlador_Usuarios {
     public Usuario getUsuarioPorNickname(String nickname) {
         //Verificar si los parametros son nulos
         if (!nickname.isEmpty()) {
-           return usuarioServicio.getUsuarioPorNickname(nickname);
+            return usuarioServicio.getUsuarioPorNickname(nickname);
         }
         return null;
     }

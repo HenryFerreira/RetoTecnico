@@ -72,7 +72,6 @@ public class ImpServicio_Usuarios implements Servicio_Usuarios {
             Logger.getLogger(ImpServicio_Usuarios.class.getName()).log(Level.SEVERE, null, ex);
         }
         return null;
-
     }
     //======================== OBTENER USUARIO POR NICKNAME ==================//
 

@@ -1,6 +1,7 @@
 package GUI;
 
 import static Logica.Constantes.JUGADOR;
+import Logica.Entidades.Categoria;
 import Logica.Entidades.Pregunta;
 import Logica.Entidades.Respuesta;
 import Logica.Fabrica;
@@ -17,29 +18,28 @@ import javax.swing.JOptionPane;
 public class GUI_ZonaDeJuego extends javax.swing.JFrame {
 
     Fabrica fabrica = new Fabrica();
-    //Se genera una lista con los usuarios obtenidos de la BD
-    List<Pregunta> preguntasGeografia = fabrica.getControladorPreguntas().getTodasLasPreguntasGeografia();
 
-    //Se genera una lista con los usuarios obtenidos de la BD
-    List<Pregunta> preguntasHistoria = fabrica.getControladorPreguntas().getTodasLasPreguntasHistoria();
+    //OBTENER LAS CATEGORIAS PARA LAS PREGUNTAS DEPENDIENDO DE SU DIFICULTAD
+    List<Categoria> faciles = fabrica.getControladorCategorias().getCategoriasFaciles();
+    List<Categoria> normales = fabrica.getControladorCategorias().getCategoriasNormales();
+    List<Categoria> dificiles = fabrica.getControladorCategorias().getCategoriasDificiles();
 
-    //Se genera una lista con los usuarios obtenidos de la BD
-    List<Pregunta> preguntasCiencia = fabrica.getControladorPreguntas().getTodasLasPreguntasCiencia();
+    //OBTENER LAS PREGUNTAS PARA EL JUEGO
+    List<Pregunta> preguntasFaciles1 = fabrica.getControladorPreguntas().getPreguntasPorIdCategoria(faciles.get(0).getId());
+    List<Pregunta> preguntasFaciles2 = fabrica.getControladorPreguntas().getPreguntasPorIdCategoria(faciles.get(1).getId());
+    List<Pregunta> preguntasNormales1 = fabrica.getControladorPreguntas().getPreguntasPorIdCategoria(normales.get(0).getId());
+    List<Pregunta> preguntasNormales2 = fabrica.getControladorPreguntas().getPreguntasPorIdCategoria(normales.get(1).getId());
+    List<Pregunta> preguntasDifiles = fabrica.getControladorPreguntas().getPreguntasPorIdCategoria(dificiles.get(0).getId());
 
-    //Se genera una lista con los usuarios obtenidos de la BD
-    List<Pregunta> preguntasDeporte = fabrica.getControladorPreguntas().getTodasLasPreguntasDeporte();
-
-    //Se genera una lista con los usuarios obtenidos de la BD
-    List<Pregunta> preguntasArte = fabrica.getControladorPreguntas().getTodasLasPreguntasArte();
-
+    //CONTADORES PARA EL JUEGO
     Integer cont = 0;
     Integer ronda = 1;
+    //PUNTOS DEL JUGADOR
     Integer puntos = JUGADOR.getPuntos();
 
     public GUI_ZonaDeJuego() {
         initComponents();
-
-        pasarPregunta(preguntasGeografia, cont);
+        pasarPregunta(preguntasFaciles1, cont);
     }
 
     @SuppressWarnings("unchecked")
@@ -338,32 +338,35 @@ public class GUI_ZonaDeJuego extends javax.swing.JFrame {
             if (fabrica.getControladorRespuestas().verificarRespuesta(respuesta)) {
                 //En cada iteracion verifica en que ronda esta para eviar las preguntas correspondientes
                 if (ronda == 2) {
-                    pasarPregunta(preguntasHistoria, cont);
+                    pasarPregunta(preguntasFaciles2, cont);
                     puntos += 150;
                     fabrica.getControladorUsuarios().modificarPuntos(JUGADOR, puntos);
                 } else if (ronda == 3) {
-                    pasarPregunta(preguntasCiencia, cont);
+                    pasarPregunta(preguntasNormales1, cont);
                     puntos += 200;
                     fabrica.getControladorUsuarios().modificarPuntos(JUGADOR, puntos);
                 } else if (ronda == 4) {
-                    pasarPregunta(preguntasDeporte, cont);
+                    pasarPregunta(preguntasNormales2, cont);
                     puntos += 250;
                     fabrica.getControladorUsuarios().modificarPuntos(JUGADOR, puntos);
                 } else if (ronda == 5) {
-                    pasarPregunta(preguntasArte, cont);
+                    pasarPregunta(preguntasDifiles, cont);
                     puntos += 300;
                     fabrica.getControladorUsuarios().modificarPuntos(JUGADOR, puntos);
                 } else {
-                    pasarPregunta(preguntasGeografia, cont);
+                    pasarPregunta(preguntasFaciles1, cont);
                     puntos += 100;
                     fabrica.getControladorUsuarios().modificarPuntos(JUGADOR, puntos);
                 }
 
             } else { //En caso de no confirmar
+                JOptionPane.showMessageDialog(null, "RESPUESTA INCORRECTA, FIN DEL JUEGO!!");
+                GUI_Inicio inicio = new GUI_Inicio();
+                this.hide();
+                inicio.show();
 
             }
         }
 
     }
-
 }

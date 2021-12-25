@@ -23,7 +23,7 @@ public class ImpControlador_Preguntas implements Controlador_Preguntas {
         }//Y se retorna
         return instance;
     }
-    
+
     //Obtener instancia del SERVICIO DE PREGUNTAS
     private final Servicio_Preguntas preguntaServicio = new ImpServicio_Preguntas().getInstance();
 
@@ -62,4 +62,11 @@ public class ImpControlador_Preguntas implements Controlador_Preguntas {
         //Se llama al SERVICIO DE PREGUNTAS para obtener las preguntas
         return preguntaServicio.getTodasLasPreguntasArte();
     }
+
+    @Override//OBTENER TODOS LAS PREGUNTAS POR ID CATEGORIA
+    public List<Pregunta> getPreguntasPorIdCategoria(Integer id) {
+        //Se llama al SERVICIO DE PREGUNTAS para obtener las preguntas
+        return preguntaServicio.getPreguntasPorIdCategoria(id);
+    }
+
 }

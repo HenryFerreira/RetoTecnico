@@ -56,6 +56,7 @@ public class GUI_Inicio extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Inicio");
 
         lbl_bienvenida.setFont(new java.awt.Font("sansserif", 0, 36)); // NOI18N
         lbl_bienvenida.setText("Bienvenido al juego");
@@ -152,6 +153,7 @@ public class GUI_Inicio extends javax.swing.JFrame {
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void btn_aceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_aceptarActionPerformed
