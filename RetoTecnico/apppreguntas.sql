@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 24, 2021 at 04:49 PM
+-- Generation Time: Dec 25, 2021 at 06:45 PM
 -- Server version: 10.4.22-MariaDB
 -- PHP Version: 8.0.13
 
@@ -77,7 +77,6 @@ INSERT INTO `preguntas` (`id`, `idCategoria`, `pregunta`, `respuesta`) VALUES
 (13, 5, '¿Qué italiano puso música al Othelo de Shakespeare?', 'Verdi.'),
 (14, 5, '¿Con qué nombre firmaba Van Gogh sus obras?', 'Vincent.'),
 (15, 5, '¿Qué tipo de instrumento es una cítara?', 'De cuerda.'),
-(16, 3, '¿En qué mes el Sol está más cerca de la Tierra?', 'Diciembre.\r\n'),
 (17, 3, '¿En qué lado del cuerpo está el hígado?', 'En el derecho.'),
 (18, 3, '¿Qué número viene después del 14 en los decimales del Pi?', 'El 1.'),
 (19, 3, '¿Cuántos elementos tiene la tabla periódica?', 'Tiene un total de 118.'),
@@ -86,7 +85,8 @@ INSERT INTO `preguntas` (`id`, `idCategoria`, `pregunta`, `respuesta`) VALUES
 (22, 4, '¿Cómo se llaman los deportistas que practican Judo?', 'Judokas.'),
 (23, 4, '¿Cuáles son los colores de los cinco anillos olímpicos?', 'Amarillo, azul, negro, rojo y verde.'),
 (24, 4, '¿En qué deporte destacó Carl Lewis?', 'Atletismo.'),
-(25, 4, '¿Dónde se inventó el Ping-Pong?', 'Inglaterra.');
+(25, 4, '¿Dónde se inventó el Ping-Pong?', 'Inglaterra.'),
+(26, 3, '¿En qué mes el Sol está más cerca de la Tierra?', 'Diciembre.');
 
 -- --------------------------------------------------------
 
@@ -165,10 +165,10 @@ INSERT INTO `respuestas` (`id`, `idPregunta`, `respuesta`) VALUES
 (208, 15, 'De teclas.'),
 (209, 15, 'De aire.'),
 (210, 15, 'De percusión.'),
-(211, 16, 'Diciembre.'),
-(212, 16, 'Enero.'),
-(213, 16, 'Junio.'),
-(214, 16, 'Marzo.'),
+(211, 26, 'Diciembre.'),
+(212, 26, 'Enero.'),
+(213, 26, 'Junio.'),
+(214, 26, 'Marzo.'),
 (215, 17, 'En el derecho.'),
 (216, 17, 'En el izquierdo.'),
 (217, 17, 'En el superior derecho.'),
@@ -214,16 +214,9 @@ INSERT INTO `respuestas` (`id`, `idPregunta`, `respuesta`) VALUES
 
 CREATE TABLE `usuarios` (
   `id` int(11) NOT NULL,
-  `nombre` varchar(255) DEFAULT NULL,
+  `nickname` varchar(255) DEFAULT NULL,
   `puntos` int(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Dumping data for table `usuarios`
---
-
-INSERT INTO `usuarios` (`id`, `nombre`, `puntos`) VALUES
-(1, 'Henry', 0);
 
 --
 -- Indexes for dumped tables
@@ -233,7 +226,8 @@ INSERT INTO `usuarios` (`id`, `nombre`, `puntos`) VALUES
 -- Indexes for table `categorias`
 --
 ALTER TABLE `categorias`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `nombre` (`nombre`);
 
 --
 -- Indexes for table `preguntas`
@@ -253,7 +247,8 @@ ALTER TABLE `respuestas`
 -- Indexes for table `usuarios`
 --
 ALTER TABLE `usuarios`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `nombre` (`nickname`) USING BTREE;
 
 --
 -- AUTO_INCREMENT for dumped tables
@@ -269,7 +264,7 @@ ALTER TABLE `categorias`
 -- AUTO_INCREMENT for table `preguntas`
 --
 ALTER TABLE `preguntas`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
 
 --
 -- AUTO_INCREMENT for table `respuestas`
@@ -281,7 +276,7 @@ ALTER TABLE `respuestas`
 -- AUTO_INCREMENT for table `usuarios`
 --
 ALTER TABLE `usuarios`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
 -- Constraints for dumped tables
