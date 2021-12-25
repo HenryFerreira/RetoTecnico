@@ -20,7 +20,7 @@ public class Consultas_Preguntas {
     //Obtener las Preguntas de forma aleatoria de ARTE
     public final String randomArte = "SELECT DISTINCT P.* FROM preguntas P, categorias C WHERE C.id = P.idCategoria AND C.id = 5 ORDER BY RAND() LIMIT 5";
 
-    public final String obtenerPreguntasPorIdCategoria = "SELECT DISTINCT P.* FROM preguntas P, categorias C WHERE C.id = P.idCategoria AND C.id = ? ORDER BY RAND() LIMIT 5";
+    public final String obtenerPreguntasPorIdCategoria = "SELECT DISTINCT P.*, C.nombre FROM preguntas P, categorias C WHERE C.id = P.idCategoria AND C.id = ? ORDER BY RAND() LIMIT 5";
 
     public Consultas_Preguntas() {
     }

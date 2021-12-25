@@ -97,6 +97,11 @@ public class GUI_Inicio extends javax.swing.JFrame {
         );
 
         btn_salir.setText("Salir");
+        btn_salir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_salirActionPerformed(evt);
+            }
+        });
 
         btn_aceptar.setText("Aceptar");
         btn_aceptar.addActionListener(new java.awt.event.ActionListener() {
@@ -170,7 +175,7 @@ public class GUI_Inicio extends javax.swing.JFrame {
             //SE SACAN LA ID DEL USUARIO DE LA BASE DE DATOS
             JUGADOR.setId(fabrica.getControladorUsuarios().getUsuarioPorNickname(nombre).getId());
             JUGADOR.setNickname(nombre);
-            JUGADOR.setPuntos(puntos);            
+            JUGADOR.setPuntos(puntos);
         } catch (Exception e) {//MOSTRAR MENSAJE CON LAS ALERTAS
             JOptionPane.showMessageDialog(rootPane, e.getMessage());
         }
@@ -179,9 +184,14 @@ public class GUI_Inicio extends javax.swing.JFrame {
         GUI_ZonaDeJuego zonaDeJuego = new GUI_ZonaDeJuego();
         this.hide();
         zonaDeJuego.show();
-        
+
 
     }//GEN-LAST:event_btn_aceptarActionPerformed
+
+    private void btn_salirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_salirActionPerformed
+        this.dispose();
+
+    }//GEN-LAST:event_btn_salirActionPerformed
 
     public static void main(String args[]) {
         try {

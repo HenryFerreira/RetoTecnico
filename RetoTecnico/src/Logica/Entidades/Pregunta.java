@@ -11,17 +11,19 @@ public class Pregunta {
     private Integer idCategoria;
     private String pregunta;
     private String correcta;
+    private String nombreCategoria;
     //============================= ATRIBUTOS ================================//
 
     //=========================== CONSTRUCTORES ==============================//
     public Pregunta() {
     }
 
-    public Pregunta(Integer id, Integer idCategoria, String pregunta, String respuesta) {
+    public Pregunta(Integer id, Integer idCategoria, String pregunta, String respuesta, String nombreCategoria) {
         this.id = id;
         this.idCategoria = idCategoria;
         this.pregunta = pregunta;
         this.correcta = respuesta;
+        this.nombreCategoria = nombreCategoria;
     }
     //=========================== CONSTRUCTORES ==============================//
 
@@ -57,6 +59,13 @@ public class Pregunta {
     public void setCorrecta(String correcta) {
         this.correcta = correcta;
     }
-    //========================= GETTERS & SETTERS ============================//
 
+    public String getNombreCategoria() {
+        return nombreCategoria;
+    }
+
+    public void setNombreCategoria(String nombreCategoria) {
+        this.nombreCategoria = nombreCategoria;
+    }
+    //========================= GETTERS & SETTERS ============================//
 }

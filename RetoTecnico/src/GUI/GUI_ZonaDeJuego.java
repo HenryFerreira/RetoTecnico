@@ -132,6 +132,11 @@ public class GUI_ZonaDeJuego extends javax.swing.JFrame {
         );
 
         Salir.setText("Salir");
+        Salir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                SalirActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -203,6 +208,13 @@ public class GUI_ZonaDeJuego extends javax.swing.JFrame {
 
     }//GEN-LAST:event_rbtn_respuesta4MouseClicked
 
+    private void SalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SalirActionPerformed
+
+        this.dispose();
+
+
+    }//GEN-LAST:event_SalirActionPerformed
+
     public static void main(String args[]) {
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
@@ -248,7 +260,7 @@ public class GUI_ZonaDeJuego extends javax.swing.JFrame {
         List<Respuesta> respuestas = fabrica.getServicioRespuestas().getRespuestasPorIdPregunta(preguntas.get(i).getId());
 
         //CARGAR LOS DATOS EN EL GUI
-        this.lbl_nombre_categoria.setText(preguntas.get(i).getIdCategoria().toString());
+        this.lbl_nombre_categoria.setText(preguntas.get(i).getNombreCategoria());
         this.lbl_pregunta.setText(preguntas.get(i).getPregunta());
         this.rbtn_respuesta1.setText(respuestas.get(0).getRespusta());
         this.rbtn_respuesta2.setText(respuestas.get(1).getRespusta());
