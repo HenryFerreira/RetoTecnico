@@ -210,7 +210,7 @@ public class GUI_ZonaDeJuego extends javax.swing.JFrame {
 
     private void SalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SalirActionPerformed
         GUI_Inicio inicio = new GUI_Inicio();
-        this.hide();
+        this.dispose();
         inicio.show();
     }//GEN-LAST:event_SalirActionPerformed
 
@@ -298,7 +298,7 @@ public class GUI_ZonaDeJuego extends javax.swing.JFrame {
                     if (flag == true) {
                         JOptionPane.showMessageDialog(null, "TERMINASTE EL JUEGO, FELICIDADES!!");
                         GUI_Inicio inicio = new GUI_Inicio();
-                        this.hide();
+                        this.dispose();
                         inicio.show();
                     }
                     pasarPregunta(preguntasFaciles1, cont);
@@ -309,7 +309,7 @@ public class GUI_ZonaDeJuego extends javax.swing.JFrame {
                 flag = false;
                 JOptionPane.showMessageDialog(null, "RESPUESTA INCORRECTA, FIN DEL JUEGO!!");
                 GUI_Inicio inicio = new GUI_Inicio();
-                this.hide();
+                this.dispose();
                 inicio.show();
             }
         }

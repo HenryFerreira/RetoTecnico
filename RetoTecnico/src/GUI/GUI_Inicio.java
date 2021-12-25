@@ -179,7 +179,7 @@ public class GUI_Inicio extends javax.swing.JFrame {
 
             //CAMBIO DE VENTANAS
             GUI_ZonaDeJuego zonaDeJuego = new GUI_ZonaDeJuego();
-            this.hide();
+            this.dispose();
             zonaDeJuego.show();
         } catch (Exception e) {//MOSTRAR MENSAJE CON LAS ALERTAS
             JOptionPane.showMessageDialog(rootPane, e.getMessage());
