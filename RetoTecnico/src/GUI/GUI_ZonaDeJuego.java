@@ -34,6 +34,7 @@ public class GUI_ZonaDeJuego extends javax.swing.JFrame {
     //CONTADORES PARA EL JUEGO
     Integer cont = 0;
     Integer ronda = 1;
+    Boolean flag = false;//BANDERA PARA MENSAJE DE FELICITACIONES
     //PUNTOS DEL JUGADOR
     Integer puntos = JUGADOR.getPuntos();
 
@@ -182,63 +183,24 @@ public class GUI_ZonaDeJuego extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void rbtn_respuesta1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_rbtn_respuesta1MouseClicked
-        cont += 1;
-        //Si es mayor o igual a 4 que son las preguntas por ronda
-        if (cont > 4) {
-            cont = 0;//Vuelve el contador a cero
-            ronda++;//Avanza de ronda
-        }
-        try {
-            respustaUsuario(this.rbtn_respuesta1.getText());
-        } catch (SQLException ex) {
-            Logger.getLogger(GUI_ZonaDeJuego.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        this.rbtn_respuesta1.setSelected(false);
+        //LLAMAR AL METODO DE RESPUESTA SELECCIONADA
+        seleccionarRespuesta(this.rbtn_respuesta1.getText());
     }//GEN-LAST:event_rbtn_respuesta1MouseClicked
 
     private void rbtn_respuesta2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_rbtn_respuesta2MouseClicked
-        cont += 1;
-        //Si es mayor o igual a 4 que son las preguntas por ronda
-        if (cont > 4) {
-            cont = 0;//Vuelve el contador a cero
-            ronda++;//Avanza de ronda
-        }
-        try {
-            respustaUsuario(this.rbtn_respuesta2.getText());
-        } catch (SQLException ex) {
-            Logger.getLogger(GUI_ZonaDeJuego.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        this.rbtn_respuesta2.setSelected(false);
+        //LLAMAR AL METODO DE RESPUESTA SELECCIONADA
+        seleccionarRespuesta(this.rbtn_respuesta2.getText());
     }//GEN-LAST:event_rbtn_respuesta2MouseClicked
 
     private void rbtn_respuesta3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_rbtn_respuesta3MouseClicked
-        cont += 1;
-        //Si es mayor o igual a 4 que son las preguntas por ronda
-        if (cont > 4) {
-            cont = 0;//Vuelve el contador a cero
-            ronda++;//Avanza de ronda
-        }
-        try {
-            respustaUsuario(this.rbtn_respuesta3.getText());
-        } catch (SQLException ex) {
-            Logger.getLogger(GUI_ZonaDeJuego.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        this.rbtn_respuesta3.setSelected(false);
+        //LLAMAR AL METODO DE RESPUESTA SELECCIONADA
+        seleccionarRespuesta(this.rbtn_respuesta3.getText());
     }//GEN-LAST:event_rbtn_respuesta3MouseClicked
 
     private void rbtn_respuesta4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_rbtn_respuesta4MouseClicked
-        cont += 1;
-        //Si es mayor o igual a 4 que son las preguntas por ronda
-        if (cont > 4) {
-            cont = 0;//Vuelve el contador a cero
-            ronda++;//Avanza de ronda
-        }
-        try {
-            respustaUsuario(this.rbtn_respuesta4.getText());
-        } catch (SQLException ex) {
-            Logger.getLogger(GUI_ZonaDeJuego.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        this.rbtn_respuesta4.setSelected(false);
+        //LLAMAR AL METODO DE RESPUESTA SELECCIONADA
+        seleccionarRespuesta(this.rbtn_respuesta4.getText());
+
     }//GEN-LAST:event_rbtn_respuesta4MouseClicked
 
     public static void main(String args[]) {
@@ -320,18 +282,48 @@ public class GUI_ZonaDeJuego extends javax.swing.JFrame {
                     pasarPregunta(preguntasDifiles, cont);
                     puntos += 300;
                     fabrica.getControladorUsuarios().modificarPuntos(JUGADOR, puntos);
+
                 } else {
+                    if (flag == true) {
+                        JOptionPane.showMessageDialog(null, "TERMINASTE EL JUEGO, FELICIDADES!!");
+                        GUI_Inicio inicio = new GUI_Inicio();
+                        this.hide();
+                        inicio.show();
+                    }
                     pasarPregunta(preguntasFaciles1, cont);
                     puntos += 100;
                     fabrica.getControladorUsuarios().modificarPuntos(JUGADOR, puntos);
                 }
             } else { //EN CASO DE QUE LA RESPUESTA SEA INCORRECTA
+                flag = false;
                 JOptionPane.showMessageDialog(null, "RESPUESTA INCORRECTA, FIN DEL JUEGO!!");
                 GUI_Inicio inicio = new GUI_Inicio();
                 this.hide();
                 inicio.show();
             }
         }
+    }
+
+    private void seleccionarRespuesta(String respuestaSeleccionada) {
+        cont += 1;
+        if (cont == 4 && ronda == 5) {
+            flag = true;
+        }
+        //Si es mayor o igual a 4 que son las preguntas por ronda
+        if (cont > 4) {
+            cont = 0;//Vuelve el contador a cero
+            ronda++;//Avanza de ronda
+        }
+        try {
+            respustaUsuario(respuestaSeleccionada);
+        } catch (SQLException ex) {
+            Logger.getLogger(GUI_ZonaDeJuego.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        this.rbtn_respuesta1.setSelected(false);
+        this.rbtn_respuesta2.setSelected(false);
+        this.rbtn_respuesta3.setSelected(false);
+        this.rbtn_respuesta4.setSelected(false);
 
     }
+
 }
