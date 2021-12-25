@@ -209,10 +209,9 @@ public class GUI_ZonaDeJuego extends javax.swing.JFrame {
     }//GEN-LAST:event_rbtn_respuesta4MouseClicked
 
     private void SalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SalirActionPerformed
-
-        this.dispose();
-
-
+        GUI_Inicio inicio = new GUI_Inicio();
+        this.hide();
+        inicio.show();
     }//GEN-LAST:event_SalirActionPerformed
 
     public static void main(String args[]) {

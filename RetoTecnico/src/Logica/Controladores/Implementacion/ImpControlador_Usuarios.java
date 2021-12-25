@@ -36,14 +36,10 @@ public class ImpControlador_Usuarios implements Controlador_Usuarios {
     }
 
     @Override//ALTA DE USUARIO
-    public void altaUsuario(Usuario usuario) {
+    public void altaUsuario(Usuario usuario) throws SQLException {
         //Verificar si se envio el parametro de nombre vasio
         if (!usuario.getNickname().isEmpty()) {
-            try {
-                usuarioServicio.altaUsuario(usuario);
-            } catch (SQLException ex) {
-                Logger.getLogger(ImpControlador_Usuarios.class.getName()).log(Level.SEVERE, null, ex);
-            }
+            usuarioServicio.altaUsuario(usuario);
         }
     }
 

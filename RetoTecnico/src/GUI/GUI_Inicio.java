@@ -176,21 +176,18 @@ public class GUI_Inicio extends javax.swing.JFrame {
             JUGADOR.setId(fabrica.getControladorUsuarios().getUsuarioPorNickname(nombre).getId());
             JUGADOR.setNickname(nombre);
             JUGADOR.setPuntos(puntos);
+
+            //CAMBIO DE VENTANAS
+            GUI_ZonaDeJuego zonaDeJuego = new GUI_ZonaDeJuego();
+            this.hide();
+            zonaDeJuego.show();
         } catch (Exception e) {//MOSTRAR MENSAJE CON LAS ALERTAS
             JOptionPane.showMessageDialog(rootPane, e.getMessage());
         }
-
-        //CAMBIO DE VENTANAS
-        GUI_ZonaDeJuego zonaDeJuego = new GUI_ZonaDeJuego();
-        this.hide();
-        zonaDeJuego.show();
-
-
     }//GEN-LAST:event_btn_aceptarActionPerformed
 
     private void btn_salirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_salirActionPerformed
         this.dispose();
-
     }//GEN-LAST:event_btn_salirActionPerformed
 
     public static void main(String args[]) {
