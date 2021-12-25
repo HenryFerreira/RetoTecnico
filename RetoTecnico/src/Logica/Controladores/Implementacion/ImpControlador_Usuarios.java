@@ -17,6 +17,8 @@ public class ImpControlador_Usuarios implements Controlador_Usuarios {
 
     //Variable estatica implementada como instancia del controlador
     private static ImpControlador_Usuarios instance;
+    //Obtener instancia del SERVICIO DE USUARIOS
+    private final Servicio_Usuarios usuarioServicio = new ImpServicio_Usuarios().getInstance();
 
     //Obtener instancia de la IMPCONTROLADOR_USUARIOS
     public ImpControlador_Usuarios getInstance() {
@@ -26,8 +28,6 @@ public class ImpControlador_Usuarios implements Controlador_Usuarios {
         }//Y se retorna
         return instance;
     }
-    //Obtener instancia del SERVICIO DE USUARIOS
-    private final Servicio_Usuarios usuarioServicio = new ImpServicio_Usuarios().getInstance();
 
     @Override//Obtener todos los USUARIOS de la BD
     public List<Usuario> getTodosLosUsuarios() {
@@ -47,7 +47,7 @@ public class ImpControlador_Usuarios implements Controlador_Usuarios {
         }
     }
 
-    @Override    //MODIFICAR PUNTOS DEL USUARIO
+    @Override//MODIFICAR PUNTOS DEL USUARIO
     public void modificarPuntos(Usuario usuario, Integer puntos) {
         //Verificar si los parametros son nulos
         if (usuario != null && puntos != null) {

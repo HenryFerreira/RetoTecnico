@@ -66,7 +66,7 @@ public class ImpServicio_Usuarios implements Servicio_Usuarios {
             sentencia.setString(1, nickname);
             ResultSet rs = sentencia.executeQuery();//Se obtiene la consulta
             while (rs.next()) {//Se recorre la consulta ontenida
-                return usuarioMapper(rs);//Se generan los usuarios
+                return usuarioMapper(rs);//Se retorna el usuarios
             }
         } catch (SQLException ex) {
             Logger.getLogger(ImpServicio_Usuarios.class.getName()).log(Level.SEVERE, null, ex);
@@ -76,7 +76,7 @@ public class ImpServicio_Usuarios implements Servicio_Usuarios {
     //======================== OBTENER USUARIO POR NICKNAME ==================//
 
     //============================= ALTA USUARIO =============================//
-    @Override//ALTA DE USUARIO
+    @Override
     public void altaUsuario(Usuario usuario) throws SQLException {
         try {
             //Se realiza la consulta a la base de datos mediante la CONEXION antes creada

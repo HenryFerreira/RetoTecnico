@@ -14,6 +14,8 @@ public class ImpControlador_Preguntas implements Controlador_Preguntas {
 
     //Variable estatica implementada como instancia del controlador
     private static ImpControlador_Preguntas instance;
+    //Obtener instancia del SERVICIO DE PREGUNTAS
+    private final Servicio_Preguntas preguntaServicio = new ImpServicio_Preguntas().getInstance();
 
     //Obtener instancia de la IMPCONTROLADOR_PREGUNTAS
     public ImpControlador_Preguntas getInstance() {
@@ -23,9 +25,6 @@ public class ImpControlador_Preguntas implements Controlador_Preguntas {
         }//Y se retorna
         return instance;
     }
-
-    //Obtener instancia del SERVICIO DE PREGUNTAS
-    private final Servicio_Preguntas preguntaServicio = new ImpServicio_Preguntas().getInstance();
 
     @Override//OBTENER TODOS LAS PREGUNTAS
     public List<Pregunta> getTodasLasPreguntas() {

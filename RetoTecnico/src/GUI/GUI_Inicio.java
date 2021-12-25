@@ -3,7 +3,6 @@ package GUI;
 import static Logica.Constantes.JUGADOR;
 import Logica.Entidades.Usuario;
 import Logica.Fabrica;
-import java.sql.SQLException;
 import java.util.List;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
@@ -19,25 +18,26 @@ public class GUI_Inicio extends javax.swing.JFrame {
     public GUI_Inicio() {
         initComponents();
 
-        //Crear el modelo de la tabla
+        //CREAR MODELO DE LA TABLA
         DefaultTableModel tabla = new DefaultTableModel();
-        //Defino las columnas que quiero
+        //DEFINIR LAS COLUMNAS
         tabla.addColumn("ID");
         tabla.addColumn("Nombre");
         tabla.addColumn("Puntos");
 
-        //Se genera una lista con los usuarios obtenidos de la BD
+        //OBTENER LOS USUARIOS DE LA BASE DE DATOS
         List<Usuario> usuarios = fabrica.getControladorUsuarios().getTodosLosUsuarios();
 
+        //GENERAR UNA FILA POR CADA USUARIO
         for (Usuario usuario : usuarios) {
-            String fila[] = new String[3];//Cantidad de columnas por fila
-
+            String fila[] = new String[3];//CANTIDAD DE COLUMNAS POR FILA
+            //DATOS QUE SE AGREGAN A LA FILA
             fila[0] = usuario.getId().toString();
             fila[1] = usuario.getNickname();
             fila[2] = usuario.getPuntos().toString();
-            tabla.addRow(fila);//Se agrega la fila al modelo de la tabla
+            tabla.addRow(fila);//SE AGREGA LA FILA
         }
-        //Se setea el modelo a la tabla del GUI
+        //SE SETEA EL MODELO DE LA TABLA CON LAS FILAS EN EL GUI
         this.tabla_jugadores.setModel(tabla);
     }
 
@@ -157,21 +157,25 @@ public class GUI_Inicio extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btn_aceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_aceptarActionPerformed
-        // TODO add your handling code here:
-        String nombre = this.txt_nombre_usuario.getText();
-        Integer puntos = 0;
+        //VARIABLES DEL USUARIO
+        String nombre = this.txt_nombre_usuario.getText();//NOMBRE
+        Integer puntos = 0;//PUNTOS INICIADOS EN 0
+        //SE CREA EL USUARIO
         Usuario jugador = new Usuario(nombre, puntos);
 
         try {
+            //SE AGREGA EL USUARIO A LA BASE DE DATOS
             fabrica.getControladorUsuarios().altaUsuario(jugador);
-
+            //SE SETEA LOS DATOS DEL USUARIO EN LA VARIABLE GLOBAL
+            //SE SACAN LA ID DEL USUARIO DE LA BASE DE DATOS
             JUGADOR.setId(fabrica.getControladorUsuarios().getUsuarioPorNickname(nombre).getId());
             JUGADOR.setNickname(nombre);
-            JUGADOR.setPuntos(puntos);
-        } catch (Exception e) {
+            JUGADOR.setPuntos(puntos);            
+        } catch (Exception e) {//MOSTRAR MENSAJE CON LAS ALERTAS
             JOptionPane.showMessageDialog(rootPane, e.getMessage());
         }
 
+        //CAMBIO DE VENTANAS
         GUI_ZonaDeJuego zonaDeJuego = new GUI_ZonaDeJuego();
         this.hide();
         zonaDeJuego.show();

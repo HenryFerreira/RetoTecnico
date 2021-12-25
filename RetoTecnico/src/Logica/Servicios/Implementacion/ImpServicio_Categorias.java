@@ -22,7 +22,7 @@ public class ImpServicio_Categorias implements Servicio_Categorias {
     private static ImpServicio_Categorias instance;
     //Conexion a la base de datos
     private final ConexionBD conexion = new ConexionBD();
-    
+    //CONSULTAS DE CATEGORIAS
     private final Consultas_Categorias consultasCategorias = new Consultas_Categorias();
 
     //Obtener instancia de la IMPSERVICIO_CATEGORIAS
@@ -55,7 +55,7 @@ public class ImpServicio_Categorias implements Servicio_Categorias {
         return categorias;
     }
     //================= OBTENER TODOS LAS CATEGORIA FACILES ==================//
-    
+
     //================ OBTENER TODOS LAS CATEGORIA NORMALES ==================//
     @Override
     public List<Categoria> getCategoriasNormales() {
@@ -73,7 +73,7 @@ public class ImpServicio_Categorias implements Servicio_Categorias {
         return categorias;
     }
     //================ OBTENER TODOS LAS CATEGORIA NORMALES ==================//
-    
+
     //=============== OBTENER TODOS LAS CATEGORIA DIFICILES ==================//
     @Override
     public List<Categoria> getCategoriasDificiles() {
@@ -91,7 +91,7 @@ public class ImpServicio_Categorias implements Servicio_Categorias {
         return categorias;
     }
     //=============== OBTENER TODOS LAS CATEGORIA DIFICILES ==================//
-    
+
     //============================ MAPPER CATEGORIA ==========================//
     private Categoria categoriaMapper(ResultSet rs) throws SQLException {
         try {//Con lo que se obtuvo de la consulta se genera un objeto CATEGORIA
@@ -105,5 +105,5 @@ public class ImpServicio_Categorias implements Servicio_Categorias {
         }
     }
     //============================ MAPPER CATEGORIA ==========================//
-    
+
 }

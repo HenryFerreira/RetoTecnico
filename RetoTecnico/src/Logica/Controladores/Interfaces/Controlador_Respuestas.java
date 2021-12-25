@@ -9,8 +9,10 @@ import java.util.List;
  * @author Haff
  */
 public interface Controlador_Respuestas {
+
     //OBTENER TODOS LAS RESPUESTAS
-    public List<Respuesta> getTodasLasPreguntasArte(Integer id);
+    public List<Respuesta> getRespuestasPorIdPregunta(Integer id);
+
     //VERIFICAR RESPUESTA USUARIO
     public Boolean verificarRespuesta(String respuesta) throws SQLException;
 }

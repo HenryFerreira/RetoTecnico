@@ -11,10 +11,13 @@ public interface Controlador_Usuarios {
 
     //Obtener todos los USUARIOS de la BD
     public List<Usuario> getTodosLosUsuarios();
+
     //ALTA DE USUARIO
     public void altaUsuario(Usuario usuario);
+
     //MODIFICAR PUNTOS DEL USUARIO
-    public void modificarPuntos(Usuario usuario,Integer puntos);
+    public void modificarPuntos(Usuario usuario, Integer puntos);
+
     //OBTENER USUARIO POR NICKNAME
     public Usuario getUsuarioPorNickname(String nickname);
 }

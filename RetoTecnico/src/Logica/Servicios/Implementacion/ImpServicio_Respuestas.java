@@ -36,27 +36,26 @@ public class ImpServicio_Respuestas implements Servicio_Respuestas {
     public ImpServicio_Respuestas() {
     }
 
-    //===================== OBTENER TODOS LAS RESPUESTAS =====================//
+    //=============== OBTENER RESPUESTAS POR ID DE PREGUNTA ==================//
     @Override
-    public List<Respuesta> getTodasLasPreguntasArte(Integer id) {
-        List<Respuesta> respuestas = new ArrayList<>();//Lista de preguntas
+    public List<Respuesta> getRespuestasPorIdPregunta(Integer id) {
+        List<Respuesta> respuestas = new ArrayList<>();//Lista de respuestas
         try {
             //Se realiza la consulta a la base de datos mediante la CONEXION antes creada
             PreparedStatement sentencia = conexion.getConexion().prepareStatement(consultasRespustas.getRespuestasPorIdPregunta);
             sentencia.setLong(1, id);
             ResultSet rs = sentencia.executeQuery();
             while (rs.next()) {
-                respuestas.add(respuestaMapper(rs));//Se generan las respuestas
+                respuestas.add(respuestaMapper(rs));//Se agrega las respuestas
             }
-
         } catch (SQLException ex) {
             java.util.logging.Logger.getLogger(ImpServicio_Respuestas.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         return respuestas;
     }
-    //===================== OBTENER TODOS LAS RESPUESTAS =====================//
+    //=============== OBTENER RESPUESTAS POR ID DE PREGUNTA ==================//
 
-    //===================== VERIFICAR RESPUESTA USUARIO ======================//
+    //=================== VERIFICAR RESPUESTA DEL USUARIO ====================//
     @Override
     public Boolean verificarRespuesta(String respuesta) throws SQLException {
         //Se realiza la consulta a la base de datos mediante la CONEXION antes creada
@@ -68,7 +67,7 @@ public class ImpServicio_Respuestas implements Servicio_Respuestas {
         }
         return false;
     }
-    //===================== VERIFICAR RESPUESTA USUARIO ======================//
+    //=================== VERIFICAR RESPUESTA DEL USUARIO ====================//
 
     //============================ MAPPER RESPUESTA ==========================//
     private Respuesta respuestaMapper(ResultSet rs) throws SQLException {

@@ -46,8 +46,8 @@ public class ImpServicio_Preguntas implements Servicio_Preguntas {
             //Se realiza la consulta a la base de datos mediante la CONEXION antes creada
             PreparedStatement sentencia = conexion.getConexion().prepareStatement(consultasPreguntas.todosLasPreguntas);
             ResultSet rs = sentencia.executeQuery();//Se obtiene la consulta
-            while (rs.next()) {//Se recorre la consulta ontenida
-                preguntas.add(preguntaMapper(rs));//Se generan los usuarios
+            while (rs.next()) {//Se recorre la consulta obtenida
+                preguntas.add(preguntaMapper(rs));//Se agregan los usuarios
             }
         } catch (SQLException ex) {
             Logger.getLogger(ImpServicio_Usuarios.class.getName()).log(Level.SEVERE, null, ex);
@@ -64,8 +64,8 @@ public class ImpServicio_Preguntas implements Servicio_Preguntas {
             //Se realiza la consulta a la base de datos mediante la CONEXION antes creada
             PreparedStatement sentencia = conexion.getConexion().prepareStatement(consultasPreguntas.randomGeografia);
             ResultSet rs = sentencia.executeQuery();//Se obtiene la consulta
-            while (rs.next()) {//Se recorre la consulta ontenida
-                preguntas.add(preguntaMapper(rs));//Se generan los usuarios
+            while (rs.next()) {//Se recorre la consulta obtenida
+                preguntas.add(preguntaMapper(rs));//Se agregan los preguntas
             }
         } catch (SQLException ex) {
             Logger.getLogger(ImpServicio_Usuarios.class.getName()).log(Level.SEVERE, null, ex);
@@ -82,8 +82,8 @@ public class ImpServicio_Preguntas implements Servicio_Preguntas {
             //Se realiza la consulta a la base de datos mediante la CONEXION antes creada
             PreparedStatement sentencia = conexion.getConexion().prepareStatement(consultasPreguntas.randomHistoria);
             ResultSet rs = sentencia.executeQuery();//Se obtiene la consulta
-            while (rs.next()) {//Se recorre la consulta ontenida
-                preguntas.add(preguntaMapper(rs));//Se generan los usuarios
+            while (rs.next()) {//Se recorre la consulta obtenida
+                preguntas.add(preguntaMapper(rs));//Se agregan los preguntas
             }
         } catch (SQLException ex) {
             Logger.getLogger(ImpServicio_Usuarios.class.getName()).log(Level.SEVERE, null, ex);
@@ -100,8 +100,8 @@ public class ImpServicio_Preguntas implements Servicio_Preguntas {
             //Se realiza la consulta a la base de datos mediante la CONEXION antes creada
             PreparedStatement sentencia = conexion.getConexion().prepareStatement(consultasPreguntas.randomCiencia);
             ResultSet rs = sentencia.executeQuery();//Se obtiene la consulta
-            while (rs.next()) {//Se recorre la consulta ontenida
-                preguntas.add(preguntaMapper(rs));//Se generan los usuarios
+            while (rs.next()) {//Se recorre la consulta obtenida
+                preguntas.add(preguntaMapper(rs));//Se agregan los preguntas
             }
         } catch (SQLException ex) {
             Logger.getLogger(ImpServicio_Usuarios.class.getName()).log(Level.SEVERE, null, ex);
@@ -118,8 +118,8 @@ public class ImpServicio_Preguntas implements Servicio_Preguntas {
             //Se realiza la consulta a la base de datos mediante la CONEXION antes creada
             PreparedStatement sentencia = conexion.getConexion().prepareStatement(consultasPreguntas.randomDeporte);
             ResultSet rs = sentencia.executeQuery();//Se obtiene la consulta
-            while (rs.next()) {//Se recorre la consulta ontenida
-                preguntas.add(preguntaMapper(rs));//Se generan los usuarios
+            while (rs.next()) {//Se recorre la consulta obtenida
+                preguntas.add(preguntaMapper(rs));//Se agregan los preguntas
             }
         } catch (SQLException ex) {
             Logger.getLogger(ImpServicio_Usuarios.class.getName()).log(Level.SEVERE, null, ex);
@@ -136,8 +136,8 @@ public class ImpServicio_Preguntas implements Servicio_Preguntas {
             //Se realiza la consulta a la base de datos mediante la CONEXION antes creada
             PreparedStatement sentencia = conexion.getConexion().prepareStatement(consultasPreguntas.randomArte);
             ResultSet rs = sentencia.executeQuery();//Se obtiene la consulta
-            while (rs.next()) {//Se recorre la consulta ontenida
-                preguntas.add(preguntaMapper(rs));//Se generan los usuarios
+            while (rs.next()) {//Se recorre la consulta obtenida
+                preguntas.add(preguntaMapper(rs));//Se agregan los preguntas
             }
         } catch (SQLException ex) {
             Logger.getLogger(ImpServicio_Usuarios.class.getName()).log(Level.SEVERE, null, ex);
@@ -145,7 +145,7 @@ public class ImpServicio_Preguntas implements Servicio_Preguntas {
         return preguntas;
     }
     //================= OBTENER TODOS LAS PREGUNTAS DE ARTE ==================//
-    
+
     //============ OBTENER TODOS LAS PREGUNTAS POR ID CATEGORIA ==============//
     @Override
     public List<Pregunta> getPreguntasPorIdCategoria(Integer id) {
@@ -156,9 +156,6 @@ public class ImpServicio_Preguntas implements Servicio_Preguntas {
             //Se le pasan los datos que necesita la consulta
             sentencia.setInt(1, id);
             ResultSet rs = sentencia.executeQuery();//Se obtiene la consulta
-            
-            
-            //ResultSet rs = sentencia.executeQuery();//Se obtiene la consulta
             while (rs.next()) {//Se recorre la consulta ontenida
                 preguntas.add(preguntaMapper(rs));//Se agregan los preguntas
             }
@@ -171,7 +168,7 @@ public class ImpServicio_Preguntas implements Servicio_Preguntas {
 
     //============================= MAPPER PREGUNTA ==========================//
     private Pregunta preguntaMapper(ResultSet rs) throws SQLException {
-        try {//Con lo que se obtuvo de la consulta se genera un objeto USUARIO
+        try {//Con lo que se obtuvo de la consulta se genera un objeto PREGUNTA
             return new Pregunta(
                     rs.getInt("id"),
                     rs.getInt("idCategoria"),

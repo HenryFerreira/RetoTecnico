@@ -27,7 +27,7 @@ public class Usuario {
         this.puntos = puntos;
     }
     //=========================== CONSTRUCTORES ==============================//
-    
+
     //========================= GETTERS & SETTERS ============================//
     public Integer getId() {
         return id;

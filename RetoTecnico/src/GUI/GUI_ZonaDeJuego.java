@@ -57,7 +57,6 @@ public class GUI_ZonaDeJuego extends javax.swing.JFrame {
         rbtn_respuesta3 = new javax.swing.JRadioButton();
         rbtn_respuesta4 = new javax.swing.JRadioButton();
         Salir = new javax.swing.JButton();
-        btn_continuar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -133,18 +132,6 @@ public class GUI_ZonaDeJuego extends javax.swing.JFrame {
 
         Salir.setText("Salir");
 
-        btn_continuar.setText("Continuar");
-        btn_continuar.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                btn_continuarMouseClicked(evt);
-            }
-        });
-        btn_continuar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btn_continuarActionPerformed(evt);
-            }
-        });
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -169,9 +156,7 @@ public class GUI_ZonaDeJuego extends javax.swing.JFrame {
                         .addComponent(Salir)
                         .addContainerGap())
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(btn_continuar, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(panel_preguntas, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addComponent(panel_preguntas, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addContainerGap())))
         );
         layout.setVerticalGroup(
@@ -187,34 +172,16 @@ public class GUI_ZonaDeJuego extends javax.swing.JFrame {
                 .addComponent(lbl_pregunta)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(panel_preguntas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btn_continuar)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 44, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 75, Short.MAX_VALUE)
                 .addComponent(Salir)
                 .addContainerGap())
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btn_continuarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_continuarActionPerformed
-        cont += 1;
-        //Si es mayor o igual a 4 que son las preguntas por ronda
-        if (cont > 4) {
-            cont = 0;//Vuelve el contador a cero
-            ronda++;//Avanza de ronda
-        }
-
-
-    }//GEN-LAST:event_btn_continuarActionPerformed
-
-    private void btn_continuarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_continuarMouseClicked
-
-
-    }//GEN-LAST:event_btn_continuarMouseClicked
-
     private void rbtn_respuesta1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_rbtn_respuesta1MouseClicked
-        // TODO add your handling code here:
         cont += 1;
         //Si es mayor o igual a 4 que son las preguntas por ronda
         if (cont > 4) {
@@ -230,7 +197,6 @@ public class GUI_ZonaDeJuego extends javax.swing.JFrame {
     }//GEN-LAST:event_rbtn_respuesta1MouseClicked
 
     private void rbtn_respuesta2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_rbtn_respuesta2MouseClicked
-        // TODO add your handling code here:
         cont += 1;
         //Si es mayor o igual a 4 que son las preguntas por ronda
         if (cont > 4) {
@@ -246,7 +212,6 @@ public class GUI_ZonaDeJuego extends javax.swing.JFrame {
     }//GEN-LAST:event_rbtn_respuesta2MouseClicked
 
     private void rbtn_respuesta3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_rbtn_respuesta3MouseClicked
-        // TODO add your handling code here:
         cont += 1;
         //Si es mayor o igual a 4 que son las preguntas por ronda
         if (cont > 4) {
@@ -262,7 +227,6 @@ public class GUI_ZonaDeJuego extends javax.swing.JFrame {
     }//GEN-LAST:event_rbtn_respuesta3MouseClicked
 
     private void rbtn_respuesta4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_rbtn_respuesta4MouseClicked
-        // TODO add your handling code here:
         cont += 1;
         //Si es mayor o igual a 4 que son las preguntas por ronda
         if (cont > 4) {
@@ -304,7 +268,6 @@ public class GUI_ZonaDeJuego extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton Salir;
-    private javax.swing.JButton btn_continuar;
     private javax.swing.JLabel lbl_cantidad_puntos;
     private javax.swing.JLabel lbl_categoria;
     private javax.swing.JLabel lbl_nombre_categoria;
@@ -317,10 +280,12 @@ public class GUI_ZonaDeJuego extends javax.swing.JFrame {
     private javax.swing.JRadioButton rbtn_respuesta4;
     // End of variables declaration//GEN-END:variables
 
+    //PASAR PREGUNTAS
     private void pasarPregunta(List<Pregunta> preguntas, Integer i) {
+        //RESPUESTAS DEPENDIENDO DE LA PREGUNTA
+        List<Respuesta> respuestas = fabrica.getServicioRespuestas().getRespuestasPorIdPregunta(preguntas.get(i).getId());
 
-        List<Respuesta> respuestas = fabrica.getServicioRespuestas().getTodasLasPreguntasArte(preguntas.get(i).getId());
-
+        //CARGAR LOS DATOS EN EL GUI
         this.lbl_nombre_categoria.setText(preguntas.get(i).getIdCategoria().toString());
         this.lbl_pregunta.setText(preguntas.get(i).getPregunta());
         this.rbtn_respuesta1.setText(respuestas.get(0).getRespusta());
@@ -331,12 +296,14 @@ public class GUI_ZonaDeJuego extends javax.swing.JFrame {
         this.lbl_cantidad_puntos.setText(puntos.toString());
     }
 
+    //VERIFICAR RESPUESTA DEL USUARIO
     private void respustaUsuario(String respuesta) throws SQLException {
+        //MENSAJE PARA CONTINUAR
         int i = JOptionPane.showConfirmDialog(null, "¿Desea continuar?", "Siguiente pregunta", JOptionPane.YES_NO_OPTION);
-        if (i == JOptionPane.YES_OPTION) { //Si confirma
-
+        if (i == JOptionPane.YES_OPTION) {//EN EL CASO DE CONFIRMAR "SI"
+            //SI LA RESPUESTA ES CORRECTA
             if (fabrica.getControladorRespuestas().verificarRespuesta(respuesta)) {
-                //En cada iteracion verifica en que ronda esta para eviar las preguntas correspondientes
+                //EN CADA ITERACION SE VERIFICA LA RONDA Y EN QUE PREGUNTA SE ENCUENTRA EL JUGADOR
                 if (ronda == 2) {
                     pasarPregunta(preguntasFaciles2, cont);
                     puntos += 150;
@@ -358,13 +325,11 @@ public class GUI_ZonaDeJuego extends javax.swing.JFrame {
                     puntos += 100;
                     fabrica.getControladorUsuarios().modificarPuntos(JUGADOR, puntos);
                 }
-
-            } else { //En caso de no confirmar
+            } else { //EN CASO DE QUE LA RESPUESTA SEA INCORRECTA
                 JOptionPane.showMessageDialog(null, "RESPUESTA INCORRECTA, FIN DEL JUEGO!!");
                 GUI_Inicio inicio = new GUI_Inicio();
                 this.hide();
                 inicio.show();
-
             }
         }
 

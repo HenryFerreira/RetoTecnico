@@ -12,10 +12,13 @@ public interface Servicio_Usuarios {
 
     //OBTENER TODOS LOS USUARIOS
     public List<Usuario> getTodosLosUsuarios();
+
     //ALTA DE USUARIO
     public void altaUsuario(Usuario usuario) throws SQLException;
+
     //MODIFICAR PUNTOS DEL USUARIO
-    public void modificarPuntos(Usuario usuario,Integer puntos);
+    public void modificarPuntos(Usuario usuario, Integer puntos);
+
     //OBTENER USUARIO POR NICKNAME
     public Usuario getUsuarioPorNickname(String nickname);
 }
