@@ -334,7 +334,7 @@ public class GUI_Configuracion extends javax.swing.JFrame {
 
     private void cbox_dificultadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbox_dificultadActionPerformed
         //DEPENDIENDO DE LA DIFICULTAD SELECCIONADA SE LE ASIGNA UN VALOR A LA VARIABLE
-        if (this.cbox_dificultad.getSelectedItem().equals("Facíl")) {
+        if (this.cbox_dificultad.getSelectedItem().equals("Fácil")) {
             dificultad = 1;
         } else if (this.cbox_dificultad.getSelectedItem().equals("Normal")) {
             dificultad = 2;
