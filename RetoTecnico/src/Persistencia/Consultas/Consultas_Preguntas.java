@@ -11,7 +11,7 @@ public class Consultas_Preguntas {
     //OBTENER PREGUNTAS SEGUN LA ID DE LA CATEGORIA SELECCIONADA
     public final String obtenerPreguntasPorIdCategoria = "SELECT DISTINCT P.*, C.nombre FROM preguntas P, categorias C WHERE C.id = P.idCategoria AND C.id = ? ORDER BY RAND() LIMIT 5";
     //INSERTAR PREGUNTA
-    public final String altaPregunta = "INSERT INTO preguntas (id, idCategoria, pregunta, respuesta) VALUES (NULL, ?, ?, ?)";
+    public final String altaPregunta = "INSERT INTO preguntas (idCategoria, pregunta, respuesta) VALUES (?, ?, ?)";
     
     public Consultas_Preguntas() {
     }

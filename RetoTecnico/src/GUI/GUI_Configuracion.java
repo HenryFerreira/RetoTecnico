@@ -1,13 +1,22 @@
 package GUI;
 
+import Logica.Entidades.Categoria;
+import Logica.Fabrica;
+import java.util.List;
+
 /**
  *
  * @author Haff
  */
 public class GUI_Configuracion extends javax.swing.JFrame {
 
+    Fabrica fabrica = new Fabrica();
+    private Categoria categoriaSeleccionado;
+
     public GUI_Configuracion() {
         initComponents();
+        List<Categoria> categorias = fabrica.getControladorCategorias().getTodasLasCategorias();
+        categorias.forEach(categoria -> this.cbox_categorias.addItem(categoria));
     }
 
     @SuppressWarnings("unchecked")
@@ -62,7 +71,11 @@ public class GUI_Configuracion extends javax.swing.JFrame {
 
         lbl_Categoria.setText("Categoria:");
 
-        cbox_categorias.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        cbox_categorias.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cbox_categoriasActionPerformed(evt);
+            }
+        });
 
         lbl_correcta.setText("Respuesta correcta:");
 
@@ -227,9 +240,20 @@ public class GUI_Configuracion extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btn_agregarPreguntaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_agregarPreguntaActionPerformed
-        // TODO add your handling code here:
-        
+        String pregunta = this.txt_pregunta.getText();
+        String respuestaCorrecta = this.txt_respuestaCorrecta.getText();
+        Integer idCategoria = categoriaSeleccionado.getId();
+
+        if (fabrica.getControladorPreguntas().altaPregunta(idCategoria, pregunta, respuestaCorrecta)) {
+            System.out.println("Ingresado correctamente");
+        } else {
+            System.out.println("Por favor complete todos los campos");
+        }
     }//GEN-LAST:event_btn_agregarPreguntaActionPerformed
+
+    private void cbox_categoriasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbox_categoriasActionPerformed
+        categoriaSeleccionado = (Categoria) this.cbox_categorias.getSelectedItem();
+    }//GEN-LAST:event_cbox_categoriasActionPerformed
 
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
@@ -266,7 +290,7 @@ public class GUI_Configuracion extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btn_agregarPregunta;
     private javax.swing.JButton btn_agregarPregunta1;
-    private javax.swing.JComboBox<String> cbox_categorias;
+    private javax.swing.JComboBox<Categoria> cbox_categorias;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JSpinner jSpinner1;
     private javax.swing.JLabel lbl_Categoria;

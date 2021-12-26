@@ -49,4 +49,10 @@ public class Categoria {
     }
     //========================= GETTERS & SETTERS ============================//
 
+    @Override//METODO QUE PERMITE MOSTRAR EL NOMBRE DE LAS CATEGORIAS
+    public String toString() {
+        return String.format("%s", nombre);
+    }
+    
+    
 }

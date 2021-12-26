@@ -16,5 +16,5 @@ public interface Controlador_Preguntas {
     public List<Pregunta> getPreguntasPorIdCategoria(Integer id);
 
     //ALTA PREGUNTA
-    public void altaPregunta(Integer idCategoria, String pregunta, String respuesta);
+    public Boolean altaPregunta(Integer idCategoria, String pregunta, String respuesta);
 }

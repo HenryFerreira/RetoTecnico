@@ -39,11 +39,13 @@ public class ImpControlador_Preguntas implements Controlador_Preguntas {
     }
 
     @Override
-    public void altaPregunta(Integer idCategoria, String pregunta, String respuesta) {
+    public Boolean altaPregunta(Integer idCategoria, String pregunta, String respuesta) {
         //Se llama al SERVICIO DE PREGUNTAS para hacer el alta
         //SE VERIFICA QUE NO ESTEN VASIOS LOS PARAMETROS
         if (idCategoria != null && !pregunta.isEmpty() && !respuesta.isEmpty()) {
             preguntaServicio.altaPregunta(idCategoria, pregunta, respuesta);
+            return true;
         }
+        return false;
     }
 }

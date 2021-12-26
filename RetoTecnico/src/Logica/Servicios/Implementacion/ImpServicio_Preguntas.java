@@ -84,8 +84,8 @@ public class ImpServicio_Preguntas implements Servicio_Preguntas {
             PreparedStatement sentencia = conexion.getConexion().prepareStatement(consultasPreguntas.altaPregunta);
             //Se le pasan los datos que necesita la consulta
             sentencia.setInt(1, idCategoria);
-            sentencia.setString(1, pregunta);
-            sentencia.setString(1, respuesta);            
+            sentencia.setString(2, pregunta);
+            sentencia.setString(3, respuesta);            
             sentencia.executeUpdate();//Se ejecuta la consulta
         } catch (SQLException ex) {
             Logger.getLogger(ImpServicio_Usuarios.class.getName()).log(Level.SEVERE, null, ex);
