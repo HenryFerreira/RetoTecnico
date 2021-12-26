@@ -29,7 +29,7 @@ public class GUI_ZonaDeJuego extends javax.swing.JFrame {
     List<Pregunta> preguntasFaciles2 = fabrica.getControladorPreguntas().getPreguntasPorIdCategoria(faciles.get(1).getId());
     List<Pregunta> preguntasNormales1 = fabrica.getControladorPreguntas().getPreguntasPorIdCategoria(normales.get(0).getId());
     List<Pregunta> preguntasNormales2 = fabrica.getControladorPreguntas().getPreguntasPorIdCategoria(normales.get(1).getId());
-    List<Pregunta> preguntasDifiles = fabrica.getControladorPreguntas().getPreguntasPorIdCategoria(dificiles.get(0).getId());
+    List<Pregunta> preguntasDificiles = fabrica.getControladorPreguntas().getPreguntasPorIdCategoria(dificiles.get(0).getId());
 
     //CONTADORES PARA EL JUEGO
     Integer cont = 0;
@@ -290,7 +290,7 @@ public class GUI_ZonaDeJuego extends javax.swing.JFrame {
                     puntos += 250;
                     fabrica.getControladorUsuarios().modificarPuntos(JUGADOR, puntos);
                 } else if (ronda == 5) {
-                    pasarPregunta(preguntasDifiles, cont);
+                    pasarPregunta(preguntasDificiles, cont);
                     puntos += 300;
                     fabrica.getControladorUsuarios().modificarPuntos(JUGADOR, puntos);
 
@@ -302,7 +302,7 @@ public class GUI_ZonaDeJuego extends javax.swing.JFrame {
                         inicio.show();
                     }
                     pasarPregunta(preguntasFaciles1, cont);
-                    puntos = puntos+ 100;
+                    puntos = puntos + 100;
                     fabrica.getControladorUsuarios().modificarPuntos(JUGADOR, puntos);
                 }
             } else { //EN CASO DE QUE LA RESPUESTA SEA INCORRECTA
@@ -320,11 +320,43 @@ public class GUI_ZonaDeJuego extends javax.swing.JFrame {
         if (cont == 4 && ronda == 5) {
             flag = true;
         }
-        //Si es mayor o igual a 4 que son las preguntas por ronda
-        if (cont > 4) {
-            cont = 0;//Vuelve el contador a cero
-            ronda++;//Avanza de ronda
+        //Si es mayor a la cantidad de preguntas
+        //Se le resta uno al valor del tamaño ya que los indices van del 0 en delante
+        switch (ronda) {
+            case 1:
+                if (cont > preguntasFaciles1.size() - 1) {
+                    cont = 0;//Vuelve el contador a cero
+                    ronda++;//Avanza de ronda
+                }
+                break;
+            case 2:
+                if (cont > preguntasFaciles2.size()- 1) {
+                    cont = 0;//Vuelve el contador a cero
+                    ronda++;//Avanza de ronda
+                }
+                break;
+            case 3:
+                if (cont > preguntasNormales1.size()- 1) {
+                    cont = 0;//Vuelve el contador a cero
+                    ronda++;//Avanza de ronda
+                }
+                break;
+            case 4:
+                if (cont > preguntasNormales2.size()- 1) {
+                    cont = 0;//Vuelve el contador a cero
+                    ronda++;//Avanza de ronda
+                }
+                break;
+            case 5:
+                if (cont > preguntasDificiles.size()- 1) {
+                    cont = 0;//Vuelve el contador a cero
+                    ronda++;//Avanza de ronda
+                }
+                break;
+            default:
+                break;
         }
+
         try {
             respustaUsuario(respuestaSeleccionada);
         } catch (SQLException ex) {
