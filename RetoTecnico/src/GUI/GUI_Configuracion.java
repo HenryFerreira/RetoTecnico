@@ -3,6 +3,7 @@ package GUI;
 import Logica.Entidades.Categoria;
 import Logica.Fabrica;
 import java.util.List;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -242,29 +243,36 @@ public class GUI_Configuracion extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btn_agregarPreguntaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_agregarPreguntaActionPerformed
-        //VARIABLES DE APOYO
-        String pregunta = this.txt_pregunta.getText();
-        String respuestaCorrecta = this.txt_respuestaCorrecta.getText();
-        String respuestaIncorrecta1 = this.txt_respuestaInorrecta1.getText();
-        String respuestaIncorrecta2 = this.txt_respuestaInorrecta2.getText();
-        String respuestaIncorrecta3 = this.txt_respuestaInorrecta3.getText();
+        try {
+            //VARIABLES DE APOYO
+            String pregunta = this.txt_pregunta.getText();
+            String respuestaCorrecta = this.txt_respuestaCorrecta.getText();
+            String respuestaIncorrecta1 = this.txt_respuestaInorrecta1.getText();
+            String respuestaIncorrecta2 = this.txt_respuestaInorrecta2.getText();
+            String respuestaIncorrecta3 = this.txt_respuestaInorrecta3.getText();
 
-        Integer idCategoria = categoriaSeleccionado.getId();
+            Integer idCategoria = categoriaSeleccionado.getId();
 
-        //VERIFICACION DE LA ALERTA PARA EL USUARIO
-        if (fabrica.getControladorPreguntas().verificarPregunta(idCategoria, pregunta, respuestaCorrecta) && fabrica.getControladorRespuestas().verificarRespuesta(respuestaIncorrecta1, respuestaIncorrecta2, respuestaIncorrecta3)) {
-            fabrica.getControladorPreguntas().altaPregunta(idCategoria, pregunta, respuestaCorrecta);
+            //VERIFICACION DE LA ALERTA PARA EL USUARIO
+            //VERIFICAR SI HAY ALGUN PARAMETRO VACIO
+            if (fabrica.getControladorPreguntas().verificarPregunta(idCategoria, pregunta, respuestaCorrecta) && fabrica.getControladorRespuestas().verificarRespuesta(respuestaIncorrecta1, respuestaIncorrecta2, respuestaIncorrecta3)) {
+                //LLAMAR AL ALTA DE PREGUNTA
+                fabrica.getControladorPreguntas().altaPregunta(idCategoria, pregunta, respuestaCorrecta);
 
-            
-            Integer idPregunta = fabrica.getControladorPreguntas().getIdPreguntaPorPregunta(pregunta).getId();
-            fabrica.getControladorRespuestas().altaRespuesta(idPregunta, respuestaCorrecta);
-            fabrica.getControladorRespuestas().altaRespuesta(idPregunta, respuestaIncorrecta1);
-            fabrica.getControladorRespuestas().altaRespuesta(idPregunta, respuestaIncorrecta2);
-            fabrica.getControladorRespuestas().altaRespuesta(idPregunta, respuestaIncorrecta3);
+                //OBTENER LA ID DE LA PREGUNTA RECIEN INGRESADA
+                Integer idPregunta = fabrica.getControladorPreguntas().getIdPreguntaPorPregunta(pregunta).getId();
+                //LLAMAR AL ALTA DE RESPUESTA
+                fabrica.getControladorRespuestas().altaRespuesta(idPregunta, respuestaCorrecta);
+                fabrica.getControladorRespuestas().altaRespuesta(idPregunta, respuestaIncorrecta1);
+                fabrica.getControladorRespuestas().altaRespuesta(idPregunta, respuestaIncorrecta2);
+                fabrica.getControladorRespuestas().altaRespuesta(idPregunta, respuestaIncorrecta3);
 
-            System.out.println("Ingresado correctamente");
-        } else {
-            System.out.println("Por favor complete todos los campos");
+                System.out.println("Ingresado correctamente");
+            } else {
+                System.out.println("Por favor complete todos los campos");
+            }
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(rootPane, e.getMessage());
         }
     }//GEN-LAST:event_btn_agregarPreguntaActionPerformed
 

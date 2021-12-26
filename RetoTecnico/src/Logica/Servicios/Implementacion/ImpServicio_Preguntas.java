@@ -78,7 +78,7 @@ public class ImpServicio_Preguntas implements Servicio_Preguntas {
 
     //=========================== ALTA PREGUNTA ==============================//
     @Override
-    public void altaPregunta(Integer idCategoria, String pregunta, String respuesta) {
+    public void altaPregunta(Integer idCategoria, String pregunta, String respuesta) throws SQLException{
         try {
             //Se realiza la consulta a la base de datos mediante la CONEXION antes creada
             PreparedStatement sentencia = conexion.getConexion().prepareStatement(consultasPreguntas.altaPregunta);
@@ -88,7 +88,7 @@ public class ImpServicio_Preguntas implements Servicio_Preguntas {
             sentencia.setString(3, respuesta);
             sentencia.executeUpdate();//Se ejecuta la consulta
         } catch (SQLException ex) {
-            Logger.getLogger(ImpServicio_Usuarios.class.getName()).log(Level.SEVERE, null, ex);
+            throw new SQLException(String.format("Ya existe esa pregunta [%s]", pregunta));
         }
     }
     //=========================== ALTA PREGUNTA ==============================//

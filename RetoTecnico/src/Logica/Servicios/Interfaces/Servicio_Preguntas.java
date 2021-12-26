@@ -1,6 +1,7 @@
 package Logica.Servicios.Interfaces;
 
 import Logica.Entidades.Pregunta;
+import java.sql.SQLException;
 import java.util.List;
 
 /**
@@ -16,7 +17,7 @@ public interface Servicio_Preguntas {
     public List<Pregunta> getPreguntasPorIdCategoria(Integer id);
 
     //ALTA PREGUNTA
-    public void altaPregunta(Integer idCategoria, String pregunta, String respuesta);
+    public void altaPregunta(Integer idCategoria, String pregunta, String respuesta)throws SQLException;
     
     //OBTENER ID DE PREGUNTA MEDIANTE UNA PREGUNTA
     public Pregunta getIdPreguntaPorPregunta(String pregunta);
