@@ -322,6 +322,9 @@ public class GUI_ZonaDeJuego extends javax.swing.JFrame {
         }
         //Si es mayor a la cantidad de preguntas
         //Se le resta uno al valor del tamaño ya que los indices van del 0 en delante
+        /*El hecho de hacer que las rondas duren la misma cantidad de preguntas es que 
+        si el usuario inserta menos de 5 preguntas por categoria romperia el programa*/
+        
         switch (ronda) {
             case 1:
                 if (cont > preguntasFaciles1.size() - 1) {
