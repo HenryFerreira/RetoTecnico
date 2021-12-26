@@ -304,6 +304,11 @@ public class GUI_Configuracion extends javax.swing.JFrame {
         } catch (Exception e) {
             JOptionPane.showMessageDialog(rootPane, e.getMessage());
         }
+        this.txt_pregunta.setText("");
+        this.txt_respuestaCorrecta.setText("");
+        this.txt_respuestaInorrecta1.setText("");
+        this.txt_respuestaInorrecta2.setText("");
+        this.txt_respuestaInorrecta3.setText("");
     }//GEN-LAST:event_btn_agregarPreguntaActionPerformed
 
     private void cbox_categoriasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbox_categoriasActionPerformed
@@ -330,6 +335,7 @@ public class GUI_Configuracion extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(rootPane, e.getMessage());
         }
 
+        this.txt_categoria.setText("");
     }//GEN-LAST:event_btn_agregarCategoriaActionPerformed
 
     private void cbox_dificultadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbox_dificultadActionPerformed
