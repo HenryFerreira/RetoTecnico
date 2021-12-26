@@ -302,7 +302,7 @@ public class GUI_ZonaDeJuego extends javax.swing.JFrame {
                         inicio.show();
                     }
                     pasarPregunta(preguntasFaciles1, cont);
-                    puntos += 100;
+                    puntos = puntos+ 100;
                     fabrica.getControladorUsuarios().modificarPuntos(JUGADOR, puntos);
                 }
             } else { //EN CASO DE QUE LA RESPUESTA SEA INCORRECTA
