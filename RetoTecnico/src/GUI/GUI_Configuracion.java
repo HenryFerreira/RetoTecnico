@@ -3,7 +3,6 @@ package GUI;
 import Logica.Entidades.Categoria;
 import Logica.Fabrica;
 import java.util.List;
-import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
 
 /**
@@ -284,10 +283,9 @@ public class GUI_Configuracion extends javax.swing.JFrame {
                 fabrica.getControladorRespuestas().altaRespuesta(idPregunta, respuestaIncorrecta1);
                 fabrica.getControladorRespuestas().altaRespuesta(idPregunta, respuestaIncorrecta2);
                 fabrica.getControladorRespuestas().altaRespuesta(idPregunta, respuestaIncorrecta3);
-
-                System.out.println("Ingresado correctamente");
+                JOptionPane.showMessageDialog(null, "LA PREGUNTA SE INGRESO CORRECTAMENTE");
             } else {
-                System.out.println("Por favor complete todos los campos");
+                JOptionPane.showMessageDialog(null, "POR FAVOR COMPLETE TODOS LOS CAMPOS!!");
             }
         } catch (Exception e) {
             JOptionPane.showMessageDialog(rootPane, e.getMessage());
@@ -310,10 +308,9 @@ public class GUI_Configuracion extends javax.swing.JFrame {
                 List<Categoria> categorias = fabrica.getControladorCategorias().getTodasLasCategorias();
                 //CARGAR LA LISTA OBTENIDA EN EL GUI
                 categorias.forEach(categoria -> this.cbox_categorias.addItem(categoria));
-
-                System.out.println("Agregada correctamente");
+                JOptionPane.showMessageDialog(null, "LA CATEGORIA FUE AGREGADA CORRECTAMENTE");
             } else {
-                System.out.println("Complete todos los campos");
+                JOptionPane.showMessageDialog(null, "POR FAVOR COMPLETE TODOS LOS CAMPOS!!");
             }
         } catch (Exception e) {
             JOptionPane.showMessageDialog(rootPane, e.getMessage());
