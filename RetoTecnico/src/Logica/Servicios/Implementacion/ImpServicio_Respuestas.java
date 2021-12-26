@@ -9,6 +9,8 @@ import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
 import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -69,6 +71,23 @@ public class ImpServicio_Respuestas implements Servicio_Respuestas {
     }
     //=================== VERIFICAR RESPUESTA DEL USUARIO ====================//
 
+    //=========================== ALTA RESPUESTA =============================//
+    @Override
+    public void altaRespuesta(Integer idCategoria, String respuesta) {
+        try {
+            //Se realiza la consulta a la base de datos mediante la CONEXION antes creada
+            PreparedStatement sentencia = conexion.getConexion().prepareStatement(consultasRespustas.altaRespuesta);
+            //Se le pasan los datos que necesita la consulta
+            sentencia.setInt(1, idCategoria);
+            sentencia.setString(2, respuesta);            
+            sentencia.executeUpdate();//Se ejecuta la consulta
+        } catch (SQLException ex) {
+            Logger.getLogger(ImpServicio_Usuarios.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    //=========================== ALTA RESPUESTA =============================//
+    
+    
     //============================ MAPPER RESPUESTA ==========================//
     private Respuesta respuestaMapper(ResultSet rs) throws SQLException {
         try {//Con lo que se obtuvo de la consulta se genera un objeto USUARIO

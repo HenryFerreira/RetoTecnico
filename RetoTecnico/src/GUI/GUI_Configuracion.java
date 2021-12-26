@@ -11,11 +11,13 @@ import java.util.List;
 public class GUI_Configuracion extends javax.swing.JFrame {
 
     Fabrica fabrica = new Fabrica();
-    private Categoria categoriaSeleccionado;
+    private Categoria categoriaSeleccionado;//SE UTILIZA PARA LA CATEGORIA SELECCIONADA
 
     public GUI_Configuracion() {
         initComponents();
+        //OBTENER LA LISTA DE CATEGORIAS
         List<Categoria> categorias = fabrica.getControladorCategorias().getTodasLasCategorias();
+        //CARGAR LA LISTA OBTENIDA EN EL GUI
         categorias.forEach(categoria -> this.cbox_categorias.addItem(categoria));
     }
 
@@ -240,11 +242,26 @@ public class GUI_Configuracion extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btn_agregarPreguntaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_agregarPreguntaActionPerformed
+        //VARIABLES DE APOYO
         String pregunta = this.txt_pregunta.getText();
         String respuestaCorrecta = this.txt_respuestaCorrecta.getText();
+        String respuestaIncorrecta1 = this.txt_respuestaInorrecta1.getText();
+        String respuestaIncorrecta2 = this.txt_respuestaInorrecta2.getText();
+        String respuestaIncorrecta3 = this.txt_respuestaInorrecta3.getText();
+
         Integer idCategoria = categoriaSeleccionado.getId();
 
-        if (fabrica.getControladorPreguntas().altaPregunta(idCategoria, pregunta, respuestaCorrecta)) {
+        //VERIFICACION DE LA ALERTA PARA EL USUARIO
+        if (fabrica.getControladorPreguntas().verificarPregunta(idCategoria, pregunta, respuestaCorrecta) && fabrica.getControladorRespuestas().verificarRespuesta(respuestaIncorrecta1, respuestaIncorrecta2, respuestaIncorrecta3)) {
+            fabrica.getControladorPreguntas().altaPregunta(idCategoria, pregunta, respuestaCorrecta);
+
+            
+            Integer idPregunta = fabrica.getControladorPreguntas().getIdPreguntaPorPregunta(pregunta).getId();
+            fabrica.getControladorRespuestas().altaRespuesta(idPregunta, respuestaCorrecta);
+            fabrica.getControladorRespuestas().altaRespuesta(idPregunta, respuestaIncorrecta1);
+            fabrica.getControladorRespuestas().altaRespuesta(idPregunta, respuestaIncorrecta2);
+            fabrica.getControladorRespuestas().altaRespuesta(idPregunta, respuestaIncorrecta3);
+
             System.out.println("Ingresado correctamente");
         } else {
             System.out.println("Por favor complete todos los campos");
@@ -252,6 +269,7 @@ public class GUI_Configuracion extends javax.swing.JFrame {
     }//GEN-LAST:event_btn_agregarPreguntaActionPerformed
 
     private void cbox_categoriasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbox_categoriasActionPerformed
+        //AL SELECCIONAR UNA CATEGORIA SE LA CARGA EN LA VARIABLE
         categoriaSeleccionado = (Categoria) this.cbox_categorias.getSelectedItem();
     }//GEN-LAST:event_cbox_categoriasActionPerformed
 

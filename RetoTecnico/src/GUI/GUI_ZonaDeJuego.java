@@ -275,7 +275,7 @@ public class GUI_ZonaDeJuego extends javax.swing.JFrame {
         int i = JOptionPane.showConfirmDialog(null, "¿Desea continuar?", "Siguiente pregunta", JOptionPane.YES_NO_OPTION);
         if (i == JOptionPane.YES_OPTION) {//EN EL CASO DE CONFIRMAR "SI"
             //SI LA RESPUESTA ES CORRECTA
-            if (fabrica.getControladorRespuestas().verificarRespuesta(respuesta)) {
+            if (fabrica.getControladorRespuestas().verificarRespuestaUsuario(respuesta)) {
                 //EN CADA ITERACION SE VERIFICA LA RONDA Y EN QUE PREGUNTA SE ENCUENTRA EL JUGADOR
                 if (ronda == 2) {
                     pasarPregunta(preguntasFaciles2, cont);

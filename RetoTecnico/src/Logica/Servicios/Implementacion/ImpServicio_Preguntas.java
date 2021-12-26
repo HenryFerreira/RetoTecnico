@@ -85,14 +85,33 @@ public class ImpServicio_Preguntas implements Servicio_Preguntas {
             //Se le pasan los datos que necesita la consulta
             sentencia.setInt(1, idCategoria);
             sentencia.setString(2, pregunta);
-            sentencia.setString(3, respuesta);            
+            sentencia.setString(3, respuesta);
             sentencia.executeUpdate();//Se ejecuta la consulta
         } catch (SQLException ex) {
             Logger.getLogger(ImpServicio_Usuarios.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
     //=========================== ALTA PREGUNTA ==============================//
-    
+
+    //============ OBTENER ID DE PREGUNTA MEDIANTE UNA PREGUNTA ==============//
+    @Override
+    public Pregunta getIdPreguntaPorPregunta(String pregunta) {
+        try {
+            //Se realiza la consulta a la base de datos mediante la CONEXION antes creada
+            PreparedStatement sentencia = conexion.getConexion().prepareStatement(consultasPreguntas.getIdPreguntaPorPregunta);
+            //Se le pasan los datos que necesita la consulta
+            sentencia.setString(1, pregunta);
+            ResultSet rs = sentencia.executeQuery();//Se obtiene la consulta
+             while (rs.next()) {//Se recorre la consulta ontenida
+                return preguntaSinNombreMapper(rs);//Se agregan los preguntas
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(ImpServicio_Usuarios.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return null;
+    }
+    //============ OBTENER ID DE PREGUNTA MEDIANTE UNA PREGUNTA ==============//
+
     //============================= MAPPER PREGUNTA ==========================//
     private Pregunta preguntaMapper(ResultSet rs) throws SQLException {
         try {//Con lo que se obtuvo de la consulta se genera un objeto PREGUNTA
@@ -102,6 +121,21 @@ public class ImpServicio_Preguntas implements Servicio_Preguntas {
                     rs.getString("pregunta"),
                     rs.getString("respuesta"),
                     rs.getString("nombre")
+            );
+        } catch (SQLException ex) {
+            throw new SQLException(ex.getMessage(), ex.getCause());
+        }
+    }
+    //============================= MAPPER PREGUNTA ==========================//
+    
+    //============================= MAPPER PREGUNTA ==========================//
+    private Pregunta preguntaSinNombreMapper(ResultSet rs) throws SQLException {
+        try {//Con lo que se obtuvo de la consulta se genera un objeto PREGUNTA
+            return new Pregunta(
+                    rs.getInt("id"),
+                    rs.getInt("idCategoria"),
+                    rs.getString("pregunta"),
+                    rs.getString("respuesta")
             );
         } catch (SQLException ex) {
             throw new SQLException(ex.getMessage(), ex.getCause());

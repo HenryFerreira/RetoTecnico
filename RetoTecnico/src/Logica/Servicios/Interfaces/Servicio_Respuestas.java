@@ -15,4 +15,7 @@ public interface Servicio_Respuestas {
 
     //VERIFICAR RESPUESTA USUARIO
     public Boolean verificarRespuesta(String respuesta) throws SQLException;
+    
+    //ALTA DE RESPUESTA
+    public void altaRespuesta(Integer idPregunta, String respuesta);
 }

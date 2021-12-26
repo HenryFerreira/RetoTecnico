@@ -14,5 +14,11 @@ public interface Controlador_Respuestas {
     public List<Respuesta> getRespuestasPorIdPregunta(Integer id);
 
     //VERIFICAR RESPUESTA USUARIO
-    public Boolean verificarRespuesta(String respuesta) throws SQLException;
+    public Boolean verificarRespuestaUsuario(String respuesta) throws SQLException;
+    
+    //ALTA DE RESPUESTA
+    public void altaRespuesta(Integer idPregunta, String respuesta);
+    
+    //VERIFICAR PREGUNTAS
+    public Boolean verificarRespuesta(String respuesta1,String respuesta2,String respuesta3);
 }

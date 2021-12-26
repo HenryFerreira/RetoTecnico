@@ -17,5 +17,8 @@ public interface Servicio_Preguntas {
 
     //ALTA PREGUNTA
     public void altaPregunta(Integer idCategoria, String pregunta, String respuesta);
+    
+    //OBTENER ID DE PREGUNTA MEDIANTE UNA PREGUNTA
+    public Pregunta getIdPreguntaPorPregunta(String pregunta);
 
 }

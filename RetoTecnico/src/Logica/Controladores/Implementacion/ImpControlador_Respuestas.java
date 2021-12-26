@@ -33,8 +33,22 @@ public class ImpControlador_Respuestas implements Controlador_Respuestas {
     }
 
     @Override//VERIFICAR RESPUESTA USUARIO
-    public Boolean verificarRespuesta(String respuesta) throws SQLException {
+    public Boolean verificarRespuestaUsuario(String respuesta) throws SQLException {
         return respuestasServicio.verificarRespuesta(respuesta);
+    }
+
+    @Override//VERIFICAR RESPUESTA USUARIO
+    public void altaRespuesta(Integer idPregunta, String respuesta) {
+        respuestasServicio.altaRespuesta(idPregunta, respuesta);
+    }
+
+    @Override
+    public Boolean verificarRespuesta(String respuesta1,String respuesta2,String respuesta3) {
+        //VERIFICAR SI LOS PARAMETROS ESTAN VACIOS
+        if (!respuesta1.isEmpty() && !respuesta2.isEmpty() &&! respuesta3.isEmpty()) {
+            return true;
+        }
+        return false;
     }
 
 }

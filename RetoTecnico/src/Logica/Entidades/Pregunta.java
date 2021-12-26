@@ -25,6 +25,14 @@ public class Pregunta {
         this.correcta = respuesta;
         this.nombreCategoria = nombreCategoria;
     }
+    
+    public Pregunta(Integer id, Integer idCategoria, String pregunta, String respuesta) {
+        this.id = id;
+        this.idCategoria = idCategoria;
+        this.pregunta = pregunta;
+        this.correcta = respuesta;
+    }
+    
     //=========================== CONSTRUCTORES ==============================//
 
     //========================= GETTERS & SETTERS ============================//
