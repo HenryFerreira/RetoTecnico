@@ -32,40 +32,18 @@ public class ImpControlador_Preguntas implements Controlador_Preguntas {
         return preguntaServicio.getTodasLasPreguntas();
     }
 
-    @Override//OBTENER TODOS LAS PREGUNTAS DE GEOGRAFÍA
-    public List<Pregunta> getTodasLasPreguntasGeografia() {
-        //Se llama al SERVICIO DE PREGUNTAS para obtener las preguntas
-        return preguntaServicio.getTodasLasPreguntasGeografia();
-    }
-
-    @Override//OBTENER TODOS LAS PREGUNTAS DE HISTORIA
-    public List<Pregunta> getTodasLasPreguntasHistoria() {
-        //Se llama al SERVICIO DE PREGUNTAS para obtener las preguntas
-        return preguntaServicio.getTodasLasPreguntasHistoria();
-    }
-
-    @Override//OBTENER TODOS LAS PREGUNTAS DE CIENCIA
-    public List<Pregunta> getTodasLasPreguntasCiencia() {
-        //Se llama al SERVICIO DE PREGUNTAS para obtener las preguntas
-        return preguntaServicio.getTodasLasPreguntasCiencia();
-    }
-
-    @Override//OBTENER TODOS LAS PREGUNTAS DE DEPORTE
-    public List<Pregunta> getTodasLasPreguntasDeporte() {
-        //Se llama al SERVICIO DE PREGUNTAS para obtener las preguntas
-        return preguntaServicio.getTodasLasPreguntasDeporte();
-    }
-
-    @Override//OBTENER TODOS LAS PREGUNTAS DE ARTE
-    public List<Pregunta> getTodasLasPreguntasArte() {
-        //Se llama al SERVICIO DE PREGUNTAS para obtener las preguntas
-        return preguntaServicio.getTodasLasPreguntasArte();
-    }
-
     @Override//OBTENER TODOS LAS PREGUNTAS POR ID CATEGORIA
     public List<Pregunta> getPreguntasPorIdCategoria(Integer id) {
         //Se llama al SERVICIO DE PREGUNTAS para obtener las preguntas
         return preguntaServicio.getPreguntasPorIdCategoria(id);
     }
 
+    @Override
+    public void altaPregunta(Integer idCategoria, String pregunta, String respuesta) {
+        //Se llama al SERVICIO DE PREGUNTAS para hacer el alta
+        //SE VERIFICA QUE NO ESTEN VASIOS LOS PARAMETROS
+        if (idCategoria != null && !pregunta.isEmpty() && !respuesta.isEmpty()) {
+            preguntaServicio.altaPregunta(idCategoria, pregunta, respuesta);
+        }
+    }
 }

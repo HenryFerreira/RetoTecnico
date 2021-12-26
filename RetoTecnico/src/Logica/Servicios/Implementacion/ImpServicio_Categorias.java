@@ -44,7 +44,7 @@ public class ImpServicio_Categorias implements Servicio_Categorias {
         List<Categoria> categorias = new ArrayList<>();//Lista de categorias
         try {
             //Se realiza la consulta a la base de datos mediante la CONEXION antes creada
-            PreparedStatement sentencia = conexion.getConexion().prepareStatement(consultasCategorias.categoriasFaciles);
+            PreparedStatement sentencia = conexion.getConexion().prepareStatement(consultasCategorias.getCategoriasFaciles);
             ResultSet rs = sentencia.executeQuery();//Se obtiene la consulta
             while (rs.next()) {//Se recorre la consulta ontenida
                 categorias.add(categoriaMapper(rs));//Se agregan los categorias a la lista
@@ -62,7 +62,7 @@ public class ImpServicio_Categorias implements Servicio_Categorias {
         List<Categoria> categorias = new ArrayList<>();//Lista de categorias
         try {
             //Se realiza la consulta a la base de datos mediante la CONEXION antes creada
-            PreparedStatement sentencia = conexion.getConexion().prepareStatement(consultasCategorias.categoriasNormales);
+            PreparedStatement sentencia = conexion.getConexion().prepareStatement(consultasCategorias.getCategoriasNormales);
             ResultSet rs = sentencia.executeQuery();//Se obtiene la consulta
             while (rs.next()) {//Se recorre la consulta ontenida
                 categorias.add(categoriaMapper(rs));//Se agregan los categorias a la lista
@@ -80,7 +80,7 @@ public class ImpServicio_Categorias implements Servicio_Categorias {
         List<Categoria> categorias = new ArrayList<>();//Lista de categorias
         try {
             //Se realiza la consulta a la base de datos mediante la CONEXION antes creada
-            PreparedStatement sentencia = conexion.getConexion().prepareStatement(consultasCategorias.categoriasDificiles);
+            PreparedStatement sentencia = conexion.getConexion().prepareStatement(consultasCategorias.getCategoriasDificiles);
             ResultSet rs = sentencia.executeQuery();//Se obtiene la consulta
             while (rs.next()) {//Se recorre la consulta ontenida
                 categorias.add(categoriaMapper(rs));//Se agregan los categorias a la lista
@@ -91,6 +91,24 @@ public class ImpServicio_Categorias implements Servicio_Categorias {
         return categorias;
     }
     //=============== OBTENER TODOS LAS CATEGORIA DIFICILES ==================//
+    
+    //===================== OBTENER TODOS LAS CATEGORIA ======================//
+    @Override
+    public List<Categoria> getTodasLasCategorias() {
+        List<Categoria> categorias = new ArrayList<>();//Lista de categorias
+        try {
+            //Se realiza la consulta a la base de datos mediante la CONEXION antes creada
+            PreparedStatement sentencia = conexion.getConexion().prepareStatement(consultasCategorias.getTodasLasCategorias);
+            ResultSet rs = sentencia.executeQuery();//Se obtiene la consulta
+            while (rs.next()) {//Se recorre la consulta ontenida
+                categorias.add(categoriaMapper(rs));//Se agregan los categorias a la lista
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(ImpServicio_Usuarios.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return categorias;
+    }
+    //===================== OBTENER TODOS LAS CATEGORIA ======================//
 
     //============================ MAPPER CATEGORIA ==========================//
     private Categoria categoriaMapper(ResultSet rs) throws SQLException {

@@ -42,4 +42,8 @@ public class ImpControlador_Categorias implements Controlador_Categorias {
         return categoriaServicio.getCategoriasDificiles();
     }
 
+    @Override//OBTENER TODOS LAS CATEGORIA
+    public List<Categoria> getTodasLasCategorias() {
+        return categoriaServicio.getTodasLasCategorias();
+    }
 }

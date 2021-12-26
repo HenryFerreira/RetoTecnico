@@ -17,4 +17,7 @@ public interface Controlador_Categorias {
 
     //OBTENER TODOS LAS CATEGORIA DIFICILES
     public List<Categoria> getCategoriasDificiles();
+    
+    //OBTENER TODOS LAS CATEGORIA
+    public List<Categoria> getTodasLasCategorias();
 }
