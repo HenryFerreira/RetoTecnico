@@ -273,7 +273,8 @@
                           <EmptySpace max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Component id="txt_categoria" alignment="1" max="32767" attributes="0"/>
-                              <Component id="btn_agregarPregunta1" alignment="0" max="32767" attributes="0"/>
+                              <Component id="btn_agregarCategoria" alignment="0" max="32767" attributes="0"/>
+                              <Component id="cbox_dificultad" alignment="0" max="32767" attributes="0"/>
                           </Group>
                       </Group>
                   </Group>
@@ -290,8 +291,10 @@
                   <Component id="lbl_nombreCategoria" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
                   <Component id="txt_categoria" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Component id="cbox_dificultad" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="32767" attributes="0"/>
-                  <Component id="btn_agregarPregunta1" min="-2" max="-2" attributes="0"/>
+                  <Component id="btn_agregarCategoria" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
               </Group>
           </Group>
@@ -303,10 +306,13 @@
             <Property name="text" type="java.lang.String" value="Agregar preguntas"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JButton" name="btn_agregarPregunta1">
+        <Component class="javax.swing.JButton" name="btn_agregarCategoria">
           <Properties>
             <Property name="text" type="java.lang.String" value="Agregar"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btn_agregarCategoriaActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JLabel" name="lbl_nombreCategoria">
           <Properties>
@@ -314,6 +320,23 @@
           </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="txt_categoria">
+        </Component>
+        <Component class="javax.swing.JComboBox" name="cbox_dificultad">
+          <Properties>
+            <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+              <StringArray count="3">
+                <StringItem index="0" value="F&#xe1;cil"/>
+                <StringItem index="1" value="Normal"/>
+                <StringItem index="2" value="Dif&#xed;cil"/>
+              </StringArray>
+            </Property>
+          </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="cbox_dificultadActionPerformed"/>
+          </Events>
+          <AuxValues>
+            <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
+          </AuxValues>
         </Component>
       </SubComponents>
     </Container>

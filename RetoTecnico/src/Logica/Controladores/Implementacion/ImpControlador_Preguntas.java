@@ -4,6 +4,7 @@ import Logica.Controladores.Interfaces.Controlador_Preguntas;
 import Logica.Entidades.Pregunta;
 import Logica.Servicios.Implementacion.ImpServicio_Preguntas;
 import Logica.Servicios.Interfaces.Servicio_Preguntas;
+import java.sql.SQLException;
 import java.util.List;
 
 /**
@@ -39,7 +40,7 @@ public class ImpControlador_Preguntas implements Controlador_Preguntas {
     }
 
     @Override
-    public void altaPregunta(Integer idCategoria, String pregunta, String respuesta) {
+    public void altaPregunta(Integer idCategoria, String pregunta, String respuesta) throws SQLException{
         //Se llama al SERVICIO DE PREGUNTAS para hacer el alta
         preguntaServicio.altaPregunta(idCategoria, pregunta, respuesta);
     }

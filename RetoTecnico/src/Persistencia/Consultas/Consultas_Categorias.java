@@ -13,5 +13,7 @@ public class Consultas_Categorias {
     public final String getCategoriasNormales = "SELECT DISTINCT * FROM categorias C WHERE C.dificultad = 2 ORDER BY RAND() LIMIT 2";
     //Obtener una CATEGORIA de DIFICULTAD 1 --> Dificil
     public final String getCategoriasDificiles = "SELECT DISTINCT * FROM categorias C WHERE C.dificultad = 3 ORDER BY RAND() LIMIT 1";
+    //Alta de CATEGORIAS
+    public final String altaCategoria = "INSERT INTO categorias (nombre, dificultad) VALUES (?, ?)";
 
 }

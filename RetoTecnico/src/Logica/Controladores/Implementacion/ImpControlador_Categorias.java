@@ -4,7 +4,10 @@ import Logica.Controladores.Interfaces.Controlador_Categorias;
 import Logica.Entidades.Categoria;
 import Logica.Servicios.Implementacion.ImpServicio_Categorias;
 import Logica.Servicios.Interfaces.Servicio_Categorias;
+import java.sql.SQLException;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -46,4 +49,18 @@ public class ImpControlador_Categorias implements Controlador_Categorias {
     public List<Categoria> getTodasLasCategorias() {
         return categoriaServicio.getTodasLasCategorias();
     }
+
+    @Override//OBTENER TODOS LAS CATEGORIA
+    public void altaCategoria(String categoria, Integer dificultad) throws SQLException {
+        categoriaServicio.altaCategoria(categoria, dificultad);
+    }
+
+    @Override
+    public Boolean verificarCategoria(String categoria, Integer dificultad) {
+        if (!categoria.isEmpty() && dificultad != null) {
+            return true;
+        }
+        return false;
+    }
+
 }

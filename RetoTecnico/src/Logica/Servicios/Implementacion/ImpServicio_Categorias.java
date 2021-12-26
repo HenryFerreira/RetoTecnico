@@ -91,7 +91,7 @@ public class ImpServicio_Categorias implements Servicio_Categorias {
         return categorias;
     }
     //=============== OBTENER TODOS LAS CATEGORIA DIFICILES ==================//
-    
+
     //===================== OBTENER TODOS LAS CATEGORIA ======================//
     @Override
     public List<Categoria> getTodasLasCategorias() {
@@ -109,6 +109,22 @@ public class ImpServicio_Categorias implements Servicio_Categorias {
         return categorias;
     }
     //===================== OBTENER TODOS LAS CATEGORIA ======================//
+
+    //============================== ALTA CATEGORIA ==========================//
+    @Override
+    public void altaCategoria(String categoria, Integer dificultad) throws SQLException {
+        try {
+            //Se realiza la consulta a la base de datos mediante la CONEXION antes creada
+            PreparedStatement sentencia = conexion.getConexion().prepareStatement(consultasCategorias.altaCategoria);
+            //Se le pasan los datos que necesita la consulta
+            sentencia.setString(1, categoria);
+            sentencia.setInt(2, dificultad);
+            sentencia.executeUpdate();//Se ejecuta la consulta
+        } catch (SQLException ex) {
+            throw new SQLException(String.format("Ya existe esa pregunta [%s]", categoria));
+        }
+    }
+    //============================== ALTA CATEGORIA ==========================//
 
     //============================ MAPPER CATEGORIA ==========================//
     private Categoria categoriaMapper(ResultSet rs) throws SQLException {

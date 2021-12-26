@@ -3,6 +3,7 @@ package GUI;
 import Logica.Entidades.Categoria;
 import Logica.Fabrica;
 import java.util.List;
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
 
 /**
@@ -13,6 +14,7 @@ public class GUI_Configuracion extends javax.swing.JFrame {
 
     Fabrica fabrica = new Fabrica();
     private Categoria categoriaSeleccionado;//SE UTILIZA PARA LA CATEGORIA SELECCIONADA
+    private Integer dificultad;
 
     public GUI_Configuracion() {
         initComponents();
@@ -46,9 +48,10 @@ public class GUI_Configuracion extends javax.swing.JFrame {
         btn_agregarPregunta = new javax.swing.JButton();
         panel_agregarCategoria = new javax.swing.JPanel();
         lbl_tituloPreguntas1 = new javax.swing.JLabel();
-        btn_agregarPregunta1 = new javax.swing.JButton();
+        btn_agregarCategoria = new javax.swing.JButton();
         lbl_nombreCategoria = new javax.swing.JLabel();
         txt_categoria = new javax.swing.JTextField();
+        cbox_dificultad = new javax.swing.JComboBox<>();
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -170,9 +173,21 @@ public class GUI_Configuracion extends javax.swing.JFrame {
 
         lbl_tituloPreguntas1.setText("Agregar preguntas");
 
-        btn_agregarPregunta1.setText("Agregar");
+        btn_agregarCategoria.setText("Agregar");
+        btn_agregarCategoria.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_agregarCategoriaActionPerformed(evt);
+            }
+        });
 
         lbl_nombreCategoria.setText("Nombre de la categoria:");
+
+        cbox_dificultad.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Fácil", "Normal", "Difícil" }));
+        cbox_dificultad.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cbox_dificultadActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout panel_agregarCategoriaLayout = new javax.swing.GroupLayout(panel_agregarCategoria);
         panel_agregarCategoria.setLayout(panel_agregarCategoriaLayout);
@@ -193,7 +208,8 @@ public class GUI_Configuracion extends javax.swing.JFrame {
                         .addContainerGap()
                         .addGroup(panel_agregarCategoriaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(txt_categoria, javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(btn_agregarPregunta1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                            .addComponent(btn_agregarCategoria, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(cbox_dificultad, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                 .addContainerGap())
         );
         panel_agregarCategoriaLayout.setVerticalGroup(
@@ -205,8 +221,10 @@ public class GUI_Configuracion extends javax.swing.JFrame {
                 .addComponent(lbl_nombreCategoria)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(txt_categoria, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(cbox_dificultad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(btn_agregarPregunta1)
+                .addComponent(btn_agregarCategoria)
                 .addContainerGap())
         );
 
@@ -281,6 +299,39 @@ public class GUI_Configuracion extends javax.swing.JFrame {
         categoriaSeleccionado = (Categoria) this.cbox_categorias.getSelectedItem();
     }//GEN-LAST:event_cbox_categoriasActionPerformed
 
+    private void btn_agregarCategoriaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_agregarCategoriaActionPerformed
+
+        try {
+            String nombreCategoria = this.txt_categoria.getText();
+            if (fabrica.getControladorCategorias().verificarCategoria(nombreCategoria, dificultad)) {
+                fabrica.getControladorCategorias().altaCategoria(nombreCategoria, dificultad);
+                this.cbox_categorias.removeAllItems();
+                //OBTENER LA LISTA DE CATEGORIAS
+                List<Categoria> categorias = fabrica.getControladorCategorias().getTodasLasCategorias();
+                //CARGAR LA LISTA OBTENIDA EN EL GUI
+                categorias.forEach(categoria -> this.cbox_categorias.addItem(categoria));
+
+                System.out.println("Agregada correctamente");
+            } else {
+                System.out.println("Complete todos los campos");
+            }
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(rootPane, e.getMessage());
+        }
+
+    }//GEN-LAST:event_btn_agregarCategoriaActionPerformed
+
+    private void cbox_dificultadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbox_dificultadActionPerformed
+        //DEPENDIENDO DE LA DIFICULTAD SELECCIONADA SE LE ASIGNA UN VALOR A LA VARIABLE
+        if (this.cbox_dificultad.getSelectedItem().equals("Facíl")) {
+            dificultad = 1;
+        } else if (this.cbox_dificultad.getSelectedItem().equals("Normal")) {
+            dificultad = 2;
+        } else {
+            dificultad = 3;
+        }
+    }//GEN-LAST:event_cbox_dificultadActionPerformed
+
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -314,9 +365,10 @@ public class GUI_Configuracion extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btn_agregarCategoria;
     private javax.swing.JButton btn_agregarPregunta;
-    private javax.swing.JButton btn_agregarPregunta1;
     private javax.swing.JComboBox<Categoria> cbox_categorias;
+    private javax.swing.JComboBox<String> cbox_dificultad;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JSpinner jSpinner1;
     private javax.swing.JLabel lbl_Categoria;
