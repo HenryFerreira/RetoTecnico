@@ -190,22 +190,33 @@ public class GUI_ZonaDeJuego extends javax.swing.JFrame {
     private void rbtn_respuesta1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_rbtn_respuesta1MouseClicked
         //LLAMAR AL METODO DE RESPUESTA SELECCIONADA
         seleccionarRespuesta(this.rbtn_respuesta1.getText());
+        this.rbtn_respuesta2.setSelected(false);
+        this.rbtn_respuesta3.setSelected(false);
+        this.rbtn_respuesta4.setSelected(false);
     }//GEN-LAST:event_rbtn_respuesta1MouseClicked
 
     private void rbtn_respuesta2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_rbtn_respuesta2MouseClicked
         //LLAMAR AL METODO DE RESPUESTA SELECCIONADA
         seleccionarRespuesta(this.rbtn_respuesta2.getText());
+        this.rbtn_respuesta1.setSelected(false);
+        this.rbtn_respuesta3.setSelected(false);
+        this.rbtn_respuesta4.setSelected(false);
     }//GEN-LAST:event_rbtn_respuesta2MouseClicked
 
     private void rbtn_respuesta3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_rbtn_respuesta3MouseClicked
         //LLAMAR AL METODO DE RESPUESTA SELECCIONADA
         seleccionarRespuesta(this.rbtn_respuesta3.getText());
+        this.rbtn_respuesta1.setSelected(false);
+        this.rbtn_respuesta2.setSelected(false);
+        this.rbtn_respuesta4.setSelected(false);
     }//GEN-LAST:event_rbtn_respuesta3MouseClicked
 
     private void rbtn_respuesta4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_rbtn_respuesta4MouseClicked
         //LLAMAR AL METODO DE RESPUESTA SELECCIONADA
         seleccionarRespuesta(this.rbtn_respuesta4.getText());
-
+        this.rbtn_respuesta1.setSelected(false);
+        this.rbtn_respuesta2.setSelected(false);
+        this.rbtn_respuesta3.setSelected(false);
     }//GEN-LAST:event_rbtn_respuesta4MouseClicked
 
     private void SalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SalirActionPerformed
