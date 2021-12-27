@@ -268,7 +268,7 @@ public class GUI_ZonaDeJuego extends javax.swing.JFrame {
         List<Respuesta> respuestas = fabrica.getServicioRespuestas().getRespuestasPorIdPregunta(preguntas.get(i).getId());
 
         //CARGAR LOS DATOS EN EL GUI
-        this.lbl_nombre_categoria.setText(preguntas.get(i).getNombreCategoria()+" | Ronda actual: "+ronda);
+        this.lbl_nombre_categoria.setText(preguntas.get(i).getNombreCategoria() + " | Ronda actual: " + ronda);
         this.lbl_pregunta.setText(preguntas.get(i).getPregunta());
         this.rbtn_respuesta1.setText(respuestas.get(0).getRespusta());
         this.rbtn_respuesta2.setText(respuestas.get(1).getRespusta());
@@ -285,45 +285,50 @@ public class GUI_ZonaDeJuego extends javax.swing.JFrame {
         if (i == JOptionPane.YES_OPTION) {//EN EL CASO DE CONFIRMAR "SI"
             //SI LA RESPUESTA ES CORRECTA
             if (fabrica.getControladorRespuestas().verificarRespuestaUsuario(respuesta)) {
-                //EN CADA ITERACION SE VERIFICA LA RONDA Y EN QUE PREGUNTA SE ENCUENTRA EL JUGADOR
-                if (ronda == 2) {
-                    pasarPregunta(preguntasFaciles2, cont);
-                    puntos += 150;
-                    fabrica.getControladorUsuarios().modificarPuntos(JUGADOR, puntos);
-                } else if (ronda == 3) {
-                    pasarPregunta(preguntasNormales1, cont);
-                    puntos += 200;
-                    fabrica.getControladorUsuarios().modificarPuntos(JUGADOR, puntos);
-                } else if (ronda == 4) {
-                    pasarPregunta(preguntasNormales2, cont);
-                    puntos += 250;
-                    fabrica.getControladorUsuarios().modificarPuntos(JUGADOR, puntos);
-                } else if (ronda == 5) {
-                    pasarPregunta(preguntasDificiles, cont);
-                    puntos += 300;
-                    fabrica.getControladorUsuarios().modificarPuntos(JUGADOR, puntos);
-
-                } else {
-                    if (flag == true) {
-                        JOptionPane.showMessageDialog(null, "TERMINASTE EL JUEGO, FELICIDADES!!");
-                        GUI_Inicio inicio = new GUI_Inicio();
-                        this.dispose();
-                        inicio.show();
-                    }
-                    pasarPregunta(preguntasFaciles1, cont);
-                    puntos = puntos + 100;
-                    fabrica.getControladorUsuarios().modificarPuntos(JUGADOR, puntos);
-                    fabrica.getControladorUsuarios().modificarRondas(JUGADOR, ronda);
+                switch (ronda) {
+                    case 2:
+                        puntos += 150;
+                        pasarPregunta(preguntasFaciles2, cont);
+                        fabrica.getControladorUsuarios().modificarPuntos(JUGADOR, puntos);
+                        break;
+                    case 3:
+                        puntos += 200;
+                        pasarPregunta(preguntasNormales1, cont);
+                        fabrica.getControladorUsuarios().modificarPuntos(JUGADOR, puntos);
+                        break;
+                    case 4:
+                        puntos += 250;
+                        pasarPregunta(preguntasNormales2, cont);
+                        fabrica.getControladorUsuarios().modificarPuntos(JUGADOR, puntos);
+                        break;
+                    case 5:
+                        puntos += 300;
+                        pasarPregunta(preguntasDificiles, cont);
+                        fabrica.getControladorUsuarios().modificarPuntos(JUGADOR, puntos);
+                        break;
+                    default:
+                        puntos += 100;
+                        if (flag == true) {
+                            JOptionPane.showMessageDialog(null, "TERMINASTE EL JUEGO, FELICIDADES!!");
+                            GUI_Inicio inicio = new GUI_Inicio();
+                            this.dispose();
+                            inicio.show();
+                        }
+                        pasarPregunta(preguntasFaciles1, cont);
+                        fabrica.getControladorUsuarios().modificarPuntos(JUGADOR, puntos);
+                        fabrica.getControladorUsuarios().modificarRondas(JUGADOR, ronda);
+                        break;
                 }
-            } else { //EN CASO DE QUE LA RESPUESTA SEA INCORRECTA
-                flag = false;
-                fabrica.getControladorUsuarios().modificarRondas(JUGADOR, ronda);
-                JOptionPane.showMessageDialog(null, "RESPUESTA INCORRECTA, FIN DEL JUEGO!!");
-                GUI_Inicio inicio = new GUI_Inicio();
-                this.dispose();
-                inicio.show();
             }
+        } else { //EN CASO DE QUE LA RESPUESTA SEA INCORRECTA
+            flag = false;
+            fabrica.getControladorUsuarios().modificarRondas(JUGADOR, ronda);
+            JOptionPane.showMessageDialog(null, "RESPUESTA INCORRECTA, FIN DEL JUEGO!!");
+            GUI_Inicio inicio = new GUI_Inicio();
+            this.dispose();
+            inicio.show();
         }
+        //}
     }
 
     private void seleccionarRespuesta(String respuestaSeleccionada) {
