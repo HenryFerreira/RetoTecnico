@@ -270,7 +270,7 @@ public class GUI_ZonaDeJuego extends javax.swing.JFrame {
         List<Respuesta> respuestas = fabrica.getServicioRespuestas().getRespuestasPorIdPregunta(preguntas.get(i).getId());
 
         //CARGAR LOS DATOS EN EL GUI
-        this.lbl_nombre_categoria.setText(preguntas.get(i).getNombreCategoria());
+        this.lbl_nombre_categoria.setText(preguntas.get(i).getNombreCategoria()+" | Ronda actual: "+ronda);
         this.lbl_pregunta.setText(preguntas.get(i).getPregunta());
         this.rbtn_respuesta1.setText(respuestas.get(0).getRespusta());
         this.rbtn_respuesta2.setText(respuestas.get(1).getRespusta());
