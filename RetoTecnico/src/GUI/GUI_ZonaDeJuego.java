@@ -304,9 +304,11 @@ public class GUI_ZonaDeJuego extends javax.swing.JFrame {
                     pasarPregunta(preguntasFaciles1, cont);
                     puntos = puntos + 100;
                     fabrica.getControladorUsuarios().modificarPuntos(JUGADOR, puntos);
+                    fabrica.getControladorUsuarios().modificarRondas(JUGADOR, ronda);
                 }
             } else { //EN CASO DE QUE LA RESPUESTA SEA INCORRECTA
                 flag = false;
+                fabrica.getControladorUsuarios().modificarRondas(JUGADOR, ronda);
                 JOptionPane.showMessageDialog(null, "RESPUESTA INCORRECTA, FIN DEL JUEGO!!");
                 GUI_Inicio inicio = new GUI_Inicio();
                 this.dispose();
@@ -324,7 +326,7 @@ public class GUI_ZonaDeJuego extends javax.swing.JFrame {
         //Se le resta uno al valor del tamaño ya que los indices van del 0 en delante
         /*El hecho de hacer que las rondas duren la misma cantidad de preguntas es que 
         si el usuario inserta menos de 5 preguntas por categoria romperia el programa*/
-        
+
         switch (ronda) {
             case 1:
                 if (cont > preguntasFaciles1.size() - 1) {
@@ -333,25 +335,25 @@ public class GUI_ZonaDeJuego extends javax.swing.JFrame {
                 }
                 break;
             case 2:
-                if (cont > preguntasFaciles2.size()- 1) {
+                if (cont > preguntasFaciles2.size() - 1) {
                     cont = 0;//Vuelve el contador a cero
                     ronda++;//Avanza de ronda
                 }
                 break;
             case 3:
-                if (cont > preguntasNormales1.size()- 1) {
+                if (cont > preguntasNormales1.size() - 1) {
                     cont = 0;//Vuelve el contador a cero
                     ronda++;//Avanza de ronda
                 }
                 break;
             case 4:
-                if (cont > preguntasNormales2.size()- 1) {
+                if (cont > preguntasNormales2.size() - 1) {
                     cont = 0;//Vuelve el contador a cero
                     ronda++;//Avanza de ronda
                 }
                 break;
             case 5:
-                if (cont > preguntasDificiles.size()- 1) {
+                if (cont > preguntasDificiles.size() - 1) {
                     cont = 0;//Vuelve el contador a cero
                     ronda++;//Avanza de ronda
                 }

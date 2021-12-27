@@ -21,4 +21,7 @@ public interface Servicio_Usuarios {
 
     //OBTENER USUARIO POR NICKNAME
     public Usuario getUsuarioPorNickname(String nickname);
+    
+    //MODIFICAR RONDAS DEL USUARIO
+    public void modificarRondas(Usuario usuario, Integer rondaMaxima);
 }

@@ -46,7 +46,7 @@ public class GUI_Configuracion extends javax.swing.JFrame {
         txt_respuestaInorrecta3 = new javax.swing.JTextField();
         btn_agregarPregunta = new javax.swing.JButton();
         panel_agregarCategoria = new javax.swing.JPanel();
-        lbl_tituloPreguntas1 = new javax.swing.JLabel();
+        lbl_tituloCategorias = new javax.swing.JLabel();
         btn_agregarCategoria = new javax.swing.JButton();
         lbl_nombreCategoria = new javax.swing.JLabel();
         txt_categoria = new javax.swing.JTextField();
@@ -171,7 +171,7 @@ public class GUI_Configuracion extends javax.swing.JFrame {
 
         panel_agregarCategoria.setBackground(new java.awt.Color(102, 102, 102));
 
-        lbl_tituloPreguntas1.setText("Agregar preguntas");
+        lbl_tituloCategorias.setText("Agregar categorias");
 
         btn_agregarCategoria.setText("Agregar");
         btn_agregarCategoria.addActionListener(new java.awt.event.ActionListener() {
@@ -196,14 +196,9 @@ public class GUI_Configuracion extends javax.swing.JFrame {
             .addGroup(panel_agregarCategoriaLayout.createSequentialGroup()
                 .addGroup(panel_agregarCategoriaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(panel_agregarCategoriaLayout.createSequentialGroup()
-                        .addGroup(panel_agregarCategoriaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(panel_agregarCategoriaLayout.createSequentialGroup()
-                                .addGap(90, 90, 90)
-                                .addComponent(lbl_tituloPreguntas1))
-                            .addGroup(panel_agregarCategoriaLayout.createSequentialGroup()
-                                .addContainerGap()
-                                .addComponent(lbl_nombreCategoria)))
-                        .addGap(0, 113, Short.MAX_VALUE))
+                        .addContainerGap()
+                        .addComponent(lbl_nombreCategoria)
+                        .addGap(0, 171, Short.MAX_VALUE))
                     .addGroup(panel_agregarCategoriaLayout.createSequentialGroup()
                         .addContainerGap()
                         .addGroup(panel_agregarCategoriaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -211,12 +206,16 @@ public class GUI_Configuracion extends javax.swing.JFrame {
                             .addComponent(txt_categoria, javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(cbox_dificultad, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                 .addContainerGap())
+            .addGroup(panel_agregarCategoriaLayout.createSequentialGroup()
+                .addGap(107, 107, 107)
+                .addComponent(lbl_tituloCategorias)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         panel_agregarCategoriaLayout.setVerticalGroup(
             panel_agregarCategoriaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panel_agregarCategoriaLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(lbl_tituloPreguntas1)
+                .addComponent(lbl_tituloCategorias)
                 .addGap(12, 12, 12)
                 .addComponent(lbl_nombreCategoria)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -244,7 +243,7 @@ public class GUI_Configuracion extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
                         .addComponent(panel_agregarPreguntas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 114, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 112, Short.MAX_VALUE)
                         .addComponent(panel_agregarCategoria, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(290, 290, 290)
@@ -403,9 +402,9 @@ public class GUI_Configuracion extends javax.swing.JFrame {
     private javax.swing.JLabel lbl_incorrecta3;
     private javax.swing.JLabel lbl_nombreCategoria;
     private javax.swing.JLabel lbl_pregunta;
+    private javax.swing.JLabel lbl_tituloCategorias;
     private javax.swing.JLabel lbl_tituloConfiguraciones;
     private javax.swing.JLabel lbl_tituloPreguntas;
-    private javax.swing.JLabel lbl_tituloPreguntas1;
     private javax.swing.JPanel panel_agregarCategoria;
     private javax.swing.JPanel panel_agregarPreguntas;
     private javax.swing.JTextField txt_categoria;

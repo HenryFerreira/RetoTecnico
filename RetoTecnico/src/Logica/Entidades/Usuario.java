@@ -10,6 +10,7 @@ public class Usuario {
     private Integer id;
     private String nickname;
     private Integer puntos;
+    private Integer rondaMaxima;
     //============================= ATRIBUTOS ================================//
 
     //=========================== CONSTRUCTORES ==============================//
@@ -25,6 +26,13 @@ public class Usuario {
     public Usuario(String nickname, Integer puntos) {
         this.nickname = nickname;
         this.puntos = puntos;
+    }
+
+    public Usuario(Integer id, String nickname, Integer puntos, Integer rondaMaxima) {
+        this.id = id;
+        this.nickname = nickname;
+        this.puntos = puntos;
+        this.rondaMaxima = rondaMaxima;
     }
     //=========================== CONSTRUCTORES ==============================//
 
@@ -52,6 +60,13 @@ public class Usuario {
     public void setPuntos(Integer puntos) {
         this.puntos = puntos;
     }
-    //========================= GETTERS & SETTERS ============================//
 
+    public Integer getRondaMaxima() {
+        return rondaMaxima;
+    }
+
+    public void setRondaMaxima(Integer rondaMaxima) {
+        this.rondaMaxima = rondaMaxima;
+    }
+    //========================= GETTERS & SETTERS ============================//
 }

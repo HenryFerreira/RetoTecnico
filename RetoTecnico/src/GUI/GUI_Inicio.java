@@ -21,7 +21,7 @@ public class GUI_Inicio extends javax.swing.JFrame {
         //CREAR MODELO DE LA TABLA
         DefaultTableModel tabla = new DefaultTableModel();
         //DEFINIR LAS COLUMNAS
-        tabla.addColumn("ID");
+        tabla.addColumn("Máxima ronda alcanzada");
         tabla.addColumn("Nombre");
         tabla.addColumn("Puntos");
 
@@ -32,7 +32,7 @@ public class GUI_Inicio extends javax.swing.JFrame {
         for (Usuario usuario : usuarios) {
             String fila[] = new String[3];//CANTIDAD DE COLUMNAS POR FILA
             //DATOS QUE SE AGREGAN A LA FILA
-            fila[0] = usuario.getId().toString();
+            fila[0] = usuario.getRondaMaxima().toString();
             fila[1] = usuario.getNickname();
             fila[2] = usuario.getPuntos().toString();
             tabla.addRow(fila);//SE AGREGA LA FILA
@@ -67,7 +67,7 @@ public class GUI_Inicio extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Nombre", "Puntuación", "Puesto"
+                "Máxima ronda alcanzada", "Nombre", "Puntos"
             }
         ));
         jScrollPane1.setViewportView(tabla_jugadores);

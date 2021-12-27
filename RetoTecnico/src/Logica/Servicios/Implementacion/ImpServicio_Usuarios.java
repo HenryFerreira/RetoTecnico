@@ -108,11 +108,28 @@ public class ImpServicio_Usuarios implements Servicio_Usuarios {
 
     }
     //=================== MODIFICAR PUNTOS DEL USUARIO =======================//
+    
+    //=================== MODIFICAR RONDAS DEL USUARIO =======================//
+    @Override
+    public void modificarRondas(Usuario usuario, Integer rondaMaxima) {
+        try {
+            //Se realiza la consulta a la base de datos mediante la CONEXION antes creada
+            PreparedStatement sentencia = conexion.getConexion().prepareStatement(consultasUsuarios.modificarRondas);
+            //Se le pasan los datos que necesita la consulta
+            sentencia.setString(1, rondaMaxima.toString());
+            sentencia.setString(2, usuario.getId().toString());
+            sentencia.executeUpdate();//Se ejecuta la consulta
+        } catch (SQLException ex) {
+            Logger.getLogger(ImpServicio_Usuarios.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+    }
+    //=================== MODIFICAR RONDAS DEL USUARIO =======================//    
 
     //============================= MAPPER USUARIO ===========================//
     private Usuario usuarioMapper(ResultSet rs) throws SQLException {
         try {//Con lo que se obtuvo de la consulta se genera un objeto USUARIO
-            return new Usuario(rs.getInt("id"), rs.getString("nickname"), rs.getInt("puntos"));
+            return new Usuario(rs.getInt("id"), rs.getString("nickname"), rs.getInt("puntos"), rs.getInt("rondaMaxima"));
         } catch (SQLException ex) {
             throw new SQLException(ex.getMessage(), ex.getCause());
         }

@@ -6,8 +6,6 @@ import Logica.Servicios.Implementacion.ImpServicio_Usuarios;
 import Logica.Servicios.Interfaces.Servicio_Usuarios;
 import java.sql.SQLException;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /**
  *
@@ -58,5 +56,13 @@ public class ImpControlador_Usuarios implements Controlador_Usuarios {
             return usuarioServicio.getUsuarioPorNickname(nickname);
         }
         return null;
+    }
+    
+    @Override//MODIFICAR PUNTOS DEL USUARIO
+    public void modificarRondas(Usuario usuario, Integer rondaMaxima) {
+        //Verificar si los parametros son nulos
+        if (usuario != null && rondaMaxima != null) {
+            usuarioServicio.modificarRondas(usuario, rondaMaxima);
+        }
     }
 }
