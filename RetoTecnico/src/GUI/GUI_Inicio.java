@@ -157,21 +157,17 @@ public class GUI_Inicio extends javax.swing.JFrame {
                         .addContainerGap()
                         .addComponent(btn_configuracion)))
                 .addGap(26, 26, 26)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                                .addComponent(jLabel1)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
-                            .addComponent(panel_nombre_usuario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(0, 46, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(btn_salir)
-                            .addComponent(btn_aceptar))))
-                .addContainerGap())
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                        .addComponent(jLabel1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
+                    .addComponent(panel_nombre_usuario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btn_salir)
+                    .addComponent(btn_aceptar))
+                .addContainerGap(14, Short.MAX_VALUE))
         );
 
         pack();
@@ -182,25 +178,31 @@ public class GUI_Inicio extends javax.swing.JFrame {
         //VARIABLES DEL USUARIO
         String nombre = this.txt_nombre_usuario.getText();//NOMBRE
         Integer puntos = 0;//PUNTOS INICIADOS EN 0
-        //SE CREA EL USUARIO
-        Usuario jugador = new Usuario(nombre, puntos);
+        if (!nombre.isEmpty()) {
+            //SE CREA EL USUARIO
+            Usuario jugador = new Usuario(nombre, puntos);
 
-        try {
-            //SE AGREGA EL USUARIO A LA BASE DE DATOS
-            fabrica.getControladorUsuarios().altaUsuario(jugador);
-            //SE SETEA LOS DATOS DEL USUARIO EN LA VARIABLE GLOBAL
-            //SE SACAN LA ID DEL USUARIO DE LA BASE DE DATOS
-            JUGADOR.setId(fabrica.getControladorUsuarios().getUsuarioPorNickname(nombre).getId());
-            JUGADOR.setNickname(nombre);
-            JUGADOR.setPuntos(puntos);
+            try {
+                //SE AGREGA EL USUARIO A LA BASE DE DATOS
+                fabrica.getControladorUsuarios().altaUsuario(jugador);
+                //SE SETEA LOS DATOS DEL USUARIO EN LA VARIABLE GLOBAL
+                //SE SACAN LA ID DEL USUARIO DE LA BASE DE DATOS
+                JUGADOR.setId(fabrica.getControladorUsuarios().getUsuarioPorNickname(nombre).getId());
+                JUGADOR.setNickname(nombre);
+                JUGADOR.setPuntos(puntos);
 
-            //CAMBIO DE VENTANAS
-            GUI_ZonaDeJuego zonaDeJuego = new GUI_ZonaDeJuego();
-            this.dispose();
-            zonaDeJuego.show();
-        } catch (Exception e) {//MOSTRAR MENSAJE CON LAS ALERTAS
-            JOptionPane.showMessageDialog(rootPane, e.getMessage());
+                //CAMBIO DE VENTANAS
+                GUI_ZonaDeJuego zonaDeJuego = new GUI_ZonaDeJuego();
+                this.dispose();
+                zonaDeJuego.show();
+            } catch (Exception e) {//MOSTRAR MENSAJE CON LAS ALERTAS
+                JOptionPane.showMessageDialog(rootPane, e.getMessage());
+            }
+        } else {
+            JOptionPane.showMessageDialog(null, "DEBE INGRESAR UN NOMBRE PARA JUGAR");
         }
+
+
     }//GEN-LAST:event_btn_aceptarActionPerformed
 
     private void btn_salirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_salirActionPerformed
