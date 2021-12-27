@@ -72,8 +72,6 @@ public class GUI_ZonaDeJuego extends javax.swing.JFrame {
         lbl_pregunta.setFont(new java.awt.Font("Dialog", 0, 24)); // NOI18N
         lbl_pregunta.setText("Pregunta");
 
-        panel_preguntas.setBackground(new java.awt.Color(102, 102, 102));
-
         rbtn_respuesta1.setText("Respuesta_1");
         rbtn_respuesta1.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {

@@ -69,8 +69,6 @@ public class GUI_Configuracion extends javax.swing.JFrame {
         lbl_tituloConfiguraciones.setFont(new java.awt.Font("Dialog", 0, 24)); // NOI18N
         lbl_tituloConfiguraciones.setText("Configuraciones");
 
-        panel_agregarPreguntas.setBackground(new java.awt.Color(102, 102, 102));
-
         lbl_tituloPreguntas.setText("Agregar preguntas");
 
         lbl_pregunta.setText("Pregunta:");
@@ -169,8 +167,6 @@ public class GUI_Configuracion extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
-        panel_agregarCategoria.setBackground(new java.awt.Color(102, 102, 102));
-
         lbl_tituloCategorias.setText("Agregar categorias");
 
         btn_agregarCategoria.setText("Agregar");
@@ -194,17 +190,14 @@ public class GUI_Configuracion extends javax.swing.JFrame {
         panel_agregarCategoriaLayout.setHorizontalGroup(
             panel_agregarCategoriaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panel_agregarCategoriaLayout.createSequentialGroup()
+                .addContainerGap()
                 .addGroup(panel_agregarCategoriaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(panel_agregarCategoriaLayout.createSequentialGroup()
-                        .addContainerGap()
                         .addComponent(lbl_nombreCategoria)
                         .addGap(0, 171, Short.MAX_VALUE))
-                    .addGroup(panel_agregarCategoriaLayout.createSequentialGroup()
-                        .addContainerGap()
-                        .addGroup(panel_agregarCategoriaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(btn_agregarCategoria, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(txt_categoria, javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(cbox_dificultad, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                    .addComponent(btn_agregarCategoria, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(txt_categoria, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(cbox_dificultad, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
             .addGroup(panel_agregarCategoriaLayout.createSequentialGroup()
                 .addGap(107, 107, 107)

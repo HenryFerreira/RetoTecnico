@@ -72,8 +72,6 @@ public class GUI_Inicio extends javax.swing.JFrame {
         ));
         jScrollPane1.setViewportView(tabla_jugadores);
 
-        panel_nombre_usuario.setBackground(new java.awt.Color(102, 102, 102));
-
         lbl_nombre_usuario.setText("Nombre de jugador:");
 
         javax.swing.GroupLayout panel_nombre_usuarioLayout = new javax.swing.GroupLayout(panel_nombre_usuario);
